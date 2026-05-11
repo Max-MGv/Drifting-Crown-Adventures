@@ -49,7 +49,7 @@ GitHub Pages. All paths must be relative. No `fetch()` calls for local content. 
 │   │   └── components.css      ← all reusable UI components
 │   └── js/
 │       ├── ui.js               ← sidebar nav, image modals, collapsibles, term tooltips,
-│       │                          statblock renderer, DM notes panel (scratchpad + combat tracker)
+│       │                          statblock renderer, DM notes panel (note tabs + combat tracker)
 │       └── dnd-terms.js        ← SRD spell + condition data for hover tooltips
 ├── adventures/
 │   └── [adventure-name]/       ← kebab-case folder name
@@ -326,19 +326,21 @@ cd _build && node build.js <adventure-name>
 
 Every adventure page includes a fixed right-side `<aside id="notes-panel">`. It contains:
 
-- **Session Scratchpad** — free-text `<textarea>`, persisted to `localStorage`
-- **Combat Tracker** — initiative-ordered table reading from `window.AdventureCreatures`; supports players, HP tracking, AC display
+- **Note Tabs** — user-created named tabs, each a free-text `<textarea>`. Click to switch, double-click to rename, `×` to delete, `+` to add. All content persisted to `localStorage` per tab per adventure.
+- **Combat Tracker** — initiative-ordered table reading from `window.AdventureCreatures`; supports players, HP tracking (click HP to apply damage), AC display, statblock hover popup.
 
 The panel is resizable by dragging its left edge. Width is saved to `localStorage`.
+
+Wiki-link hover previews use **event delegation** on `document` — they work on any `a.wiki-link` anywhere in the page including dynamically injected content (statblock popups, etc.).
 
 HTML structure required in every adventure `index.html`:
 ```html
 <aside id="notes-panel">
   <div id="notes-resize-handle"></div>
   <div class="notes-header">DM Notes</div>
-  <div class="notes-section">
-    <div class="notes-label">Session Scratchpad</div>
-    <textarea id="notes-scratchpad" placeholder="Notes, reminders, loot handed out..."></textarea>
+  <div id="notes-tabs-bar"></div>
+  <div class="notes-section" id="notes-tabs-content">
+    <textarea id="notes-tab-textarea" placeholder="Notes..."></textarea>
   </div>
   <div class="notes-section">
     <div id="notes-combat"></div>
@@ -389,9 +391,16 @@ See `FEATURES.md` for the living feature checklist — what's done, in progress,
 | `assets/css/components.css` | ✅ Done |
 | `assets/js/ui.js` | ✅ Done — includes statblock renderer and DM notes panel |
 | `_templates/oneshot.html` | ✅ Done |
-| `adventures/statue-heist/index.html` | ✅ Done |
+| `adventures/statue-heist/index.html` | ✅ Done — rebuilt from scratch from updated source MD (2026-05-11) |
 | `adventures/statue-heist/creatures.js` | ✅ Auto-generated — 4 creatures (Mage, Minotaur, Owlbear, Young White Dragon) |
-| `_source/statue-heist/` | ✅ Done — source MD files copied from Obsidian |
+| `adventures/statue-heist-backup/` | ✅ Backup of pre-rebuild version — safe to delete once happy with new version |
+| `_source/statue-heist/` | ✅ Done — source MD files updated in Obsidian and re-synced |
 | `statue-heist.html` | Deleted — legacy flat prototype |
 | `index.html` | ✅ Done — homepage adventure listing |
 | `_build/build.js` | ✅ Done — generates `creatures.js` and injects Linked Notes section |
+
+### GitHub
+
+- Repo renamed from `Claude-Code` to **`Drifting-Crown-Adventures`** (2026-05-11)
+- GitHub Pages URL: `max-mgv.github.io/Drifting-Crown-Adventures/`
+- Local remote updated to match
