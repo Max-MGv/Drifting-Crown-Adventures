@@ -17,7 +17,14 @@
       "Bash(node *)",
       "WebFetch(domain:plugins.javalent.com)",
       "Bash(\" \"C:/Users/Max/Desktop/Claude Code/_source/statue-heist/Statue Heist.md\" | head -30)",
-      "Bash(grep -rn \"statblock\\\\|```\" \"C:/Users/Max/Desktop/Claude Code/_source/statue-heist/Statue Heist.md\" | head -30)"
+      "Bash(grep -rn \"statblock\\\\|```\" \"C:/Users/Max/Desktop/Claude Code/_source/statue-heist/Statue Heist.md\" | head -30)",
+      "Bash(git remote *)",
+      "Bash(find \"C:/Users/Max/Desktop/Obsidian/DnD Backup/backup Golden Hour\" -name \"Crok Ruthesk*\" 2>/dev/null | head -5)",
+      "Read(//c/Users/Max/Desktop/Obsidian/DnD Backup/backup Golden Hour/**)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git checkout *)"
     ]
   }
 }
