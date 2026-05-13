@@ -748,7 +748,7 @@
       if (inCombat.length) {
         const header = document.createElement('div');
         header.className = 'combat-table-header';
-        [null, '⚄  Name', '♡', '⛨'].forEach((label, i) => {
+        [null, 'Name', '♡', '⛨'].forEach((label, i) => {
           const cell = document.createElement('span');
           if (i === 0) {
             cell.className = 'combat-hdr-init';
