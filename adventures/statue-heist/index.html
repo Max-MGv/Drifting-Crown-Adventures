@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Statue Heist — One Shot</title>
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+</head>
+<body>
+
+<button id="sidebar-toggle" aria-label="Open navigation">☰</button>
+<button id="notes-toggle" aria-label="Open DM notes">📋</button>
+<div id="mobile-backdrop"></div>
+
+<nav id="sidebar">
+  <div id="sidebar-header">
+    <div class="title">The Statue Heist</div>
+    <div class="subtitle">One-Shot Adventure</div>
+  </div>
+  <nav>
+    <span class="section-label">Overview</span>
+    <a href="#intro">Introduction</a>
+    <a href="#dm-info">DM Info</a>
+    <a href="#npcs">NPCs</a>
+    <a href="#flow">Adventure Flow</a>
+    <a href="#outcomes">Outcome Branches</a>
+
+    <span class="section-label">Investigation</span>
+    <a href="#beginning">Beginning — Corwin</a>
+    <a href="#magister-district">Magister's District</a>
+    <a href="#museum">The Museum</a>
+    <a href="#pete-airship">Pete &amp; The Airship</a>
+
+    <span class="section-label">The Temple</span>
+    <a href="#temple-entrance">Temple Entrance</a>
+    <a href="#first-chamber">Chamber 1 — Oath Room</a>
+    <a href="#second-chamber">Chamber 2 — The Army</a>
+    <a href="#boss-chamber">Boss Chamber</a>
+    <a href="#sealing">Sealing Mechanic</a>
+    <a href="#ending">Ending</a>
+
+    <span class="section-label">Reference</span>
+    <a href="#magic-items">Magic Items</a>
+    <a href="#battlefield">Battlefield Actions</a>
+    <a href="#misc">Linked Notes</a>
+  </nav>
+</nav>
+
+
+<main id="main">
+
+  <!-- PAGE TITLE ──────────────────────────────────────────────── -->
+  <div class="page-title">
+    <h1>The Statue Heist</h1>
+    <p class="tagline">An artisan's contest. A stolen legacy. A sleeping horror underneath.</p>
+    <div class="meta">
+      <span>📍 The Drifting Crown</span>
+      <span>⚔️ Level 3–5</span>
+      <span>⏱ One Session</span>
+      <span>👥 3–5 Players</span>
+    </div>
+  </div>
+
+
+  <!-- INTRODUCTION ────────────────────────────────────────────── -->
+  <div class="section" id="intro">
+    <div class="section-header">
+      <span class="icon">📜</span>
+      <h2>Introduction</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="read-aloud">
+        <div class="ra-label">Player pitch</div>
+        <p>Months ago, whilst mapping an island now referred to as <strong>SoftEarth</strong>, explorers made a remarkable discovery — a magically pliable, marble-like substance that surrenders to the intent of whoever handles it. Shape it, leave it undisturbed for a few days, and it hardens to stone with a perfect memory of your vision.</p>
+        <p>The <strong>Horizon Keepers</strong> investigated and declared it safe. Now the whole artisanal community of <strong>The Drifting Crown</strong> is buzzing — bakers, tailors, stoneworkers alike are racing to realise their grandest visions in this extraordinary material.</p>
+        <p>A contest is underway in the <strong>Magister's Market</strong>. The finest statues will be displayed in the Horizon Keepers' Library Courtyard for centuries to come. And on this beautiful morning atop the Drifting Crown — several of the most promising statues have disappeared.</p>
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Setting the Scene</div>
+        <p>Your characters are new, aspiring, or veteran members of the <strong>Horizon Keepers</strong>. Encourage players to connect to the world: <em>"Would your character know Gorrath? Are you a regular at the Magister's District? Have you been to SoftEarth before?"</em> Give players the knowledge their character would have. Flavor the world with whatever feels right.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- DM INFO ─────────────────────────────────────────────────── -->
+  <div class="section" id="dm-info">
+    <div class="section-header">
+      <span class="icon">🔮</span>
+      <h2>DM Info — The Truth</h2>
+      <span class="badge">Hidden from Players</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout dm-note">
+        <div class="callout-title">Kaldorzen</div>
+        <p><strong>Kaldorzen</strong> is an ancient primordial earth being, imprisoned beneath SoftEarth millennia ago by order of a knightly order. She takes many forms and is always identified by her <strong>red glowing eyes</strong>. She has the power to give sentience to stone and once led armies that slaughtered thousands in lands far away. She can read minds.</p>
+        <p>When the island collided with the Drifting Crown Isles, the resulting earthquakes cracked her prison's inner seal — not enough to break the outer magical seal, but enough to wake her and create an entrance wide enough for <strong>Gorrath</strong> to fit through during an expedition.</p>
+        <p><em>Medusa is her sister — together, Medusa turns enemies to stone and Kaldorzen makes them into soldiers.</em></p>
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Gorrath's Pact</div>
+        <p>Kaldorzen can read minds. She found <strong>Gorrath's</strong> deepest fear — his wife <strong>Melandra</strong> is gravely ill — and made him a pact: her freedom, in exchange for her curing Melandra.</p>
+        <p>To free her: Gorrath must bring her statues to build an army large enough to defeat <strong>Merandiel Frostborn</strong>, the lich guarding the outer seal. He must also bring her <strong>Tarin StoneChisel</strong> to sculpt that army.</p>
+        <p>Gorrath stole the <strong>Ring of Gravity</strong> from the museum's collection, transported the statues overnight via <strong>Pete's airship</strong> under the guise of archaeological cargo, and kidnapped Tarin. His plan: once Kaldorzen cures Melandra, he runs away with her and never looks back. As long as Melandra lives, he doesn't care if she hates him for what he's done.</p>
+      </div>
+
+      <h3>The Clock</h3>
+      <p>How quickly players identify Gorrath determines how finished Tarin's dragon is when they arrive:</p>
+      <div class="outcome-grid">
+        <div class="outcome early">
+          <div class="outcome-label">Figure It Out Early</div>
+          <p>Race to the dungeon — dragon is <strong>debuffed</strong> (weakened, partially formed).</p>
+        </div>
+        <div class="outcome fail">
+          <div class="outcome-label">Gorrath Deceives Them</div>
+          <p>He travels with them and takes the long route — dragon is at <strong>full health</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- NPCS ────────────────────────────────────────────────────── -->
+  <div class="section" id="npcs">
+    <div class="section-header">
+      <span class="icon">🎭</span>
+      <h2>NPCs</h2>
+    </div>
+    <div class="section-body">
+      <div class="npc-grid">
+
+        <div class="npc-card villain">
+          <img class="npc-img" src="images/npcs/gorrath-ironhand.png" alt="Gorrath IronHand">
+          <div class="npc-name">Gorrath IronHand</div>
+          <div class="npc-role">
+            <span class="tag tag-villain">Villain</span>
+            Chief Archivist &amp; Curator
+          </div>
+          <p>Tall, dark-skinned, white dreads, dark robes. Anyone who knows Gorrath knows him as a kind, principled man — trusted with powerful artifacts for decades. That reputation is his greatest weapon.</p>
+          <p>Corrupted by a desperate pact. He stole the Ring of Gravity, transported the statues, and kidnapped Tarin — all to save his dying wife Melandra. He will lie, delay, and misdirect. If cornered, he fights.</p>
+          <div class="stat-block">
+            <strong>Statblock:</strong> <a class="wiki-link" href="#misc-mage">Mage</a> + 3 legendary actions (1 item per action)<br>
+            <strong>See:</strong> Museum — Gorrath Fight
+          </div>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/corwin.png" alt="Corwin">
+          <div class="npc-name">Corwin</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Authority</span>
+            Headmaster, Horizon Keepers
+          </div>
+          <p>Bushy white beard, matching brows, perpetually grumpy expression. Runs the Horizon Keepers with a cluttered desk and a small army of enchanted owls. Sends players on the mission — grumpy but not hostile.</p>
+        </div>
+
+        <div class="npc-card neutral">
+          <div class="npc-name">Melandra</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Civilian</span>
+            Gorrath's Wife
+          </div>
+          <p>Pale, white-haired, visibly unwell — found seated near the museum entrance wrapped in a shawl. Warmly thanks the players for investigating. Has no idea what Gorrath has done. <em>"He's barely slept, haven't you dear."</em></p>
+        </div>
+
+        <div class="npc-card ally">
+          <div class="npc-name">Alexandra StoneChisel</div>
+          <div class="npc-role">
+            <span class="tag tag-ally">Ally</span>
+            Tarin's Sister
+          </div>
+          <p>Short, messily-tousled red hair, bright blue eyes, stone-dusted leather apron. Sculptor's assistant — she helped Tarin with his secret dragon project. When he vanished she immediately sought out the guards. Frantic and desperate.</p>
+          <p><em>"My brother — Tarin — he's missing! He wouldn't just abandon his project. Something must have happened to him."</em></p>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/tarin-stonechisel.png" alt="Tarin StoneChisel">
+          <div class="npc-name">Tarin StoneChisel</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Captive</span>
+            Master Sculptor &amp; Earth Sorcerer
+          </div>
+          <p>One of the finest artisans on the Crown — works with Mold Earth and earth spells alongside traditional stoneworking. The armoured gryphon fountain in the Magister's Square is his. His contest piece was being kept secret — assembled in parts, each seen separately by different people.</p>
+          <p>Held in the boss chamber, forced to sculpt Kaldorzen's dragon. <strong>Not corrupted</strong> — stops the moment someone reaches him.</p>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/arrinath-pierre.png" alt="Arinath-Pierre">
+          <div class="npc-name">Arinath-Pierre</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Witness</span>
+            Baker, Magister's Market
+          </div>
+          <p>Tall, slender half-elf, white moustache, high cheekbones, hair in a manbun. Polite, arrogant, professional. Made a Minotaur for the contest. Sells dragon-shaped eclairs and baguettes shaped like small animals.</p>
+          <p><em>"Oui — Tarin got rid of the competition, that's what he did! He'd rather no one win than lose himself. I bet he has those statues in his workshop!"</em></p>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/agnes-fasthand.png" alt="Agnes Fasthand">
+          <div class="npc-name">Agnes Fasthand</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Witness</span>
+            Tailor, Magister's Market
+          </div>
+          <p>Purple hair in a comically oversized bun with a ball of wool on sewing needles tucked into it. Corset, flowing dress, heeled martens boots. Made an Owlbear for the contest.</p>
+          <p><em>"I don't know who would've taken it — why would they even need one, anyone can make... anyway, if you do find those statues and on your way back lose all but the owlbear... I could find time in my calendar for you."</em></p>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/crok-ruthesk.png" alt="Crok Ruthesk">
+          <div class="npc-name">Crok Ruthesk</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Merchant</span>
+            Magical Pop-Up Shop
+          </div>
+          <p>Half-crocodile beastling with alarming teeth and a habit of hissing mid-sentence. Playful and calculating. His shop looks sandwiched between two buildings — barely wide enough for two people — but opens into a surprisingly large magical space inside.</p>
+          <p>If players are stuck he offers Speak with Animals or footstep-tracking goggles — on loan, in exchange for a future favour.</p>
+          <div class="stat-block">
+            <strong>Goal:</strong> Opening trade with a distant kingdom — something keeps blocking the deal.<br>
+            <strong>Secret:</strong> Quietly investigating the secrets of Wysteria.
+          </div>
+        </div>
+
+        <div class="npc-card neutral">
+          <div class="npc-name">Pete</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Transport</span>
+            Airship Pilot
+          </div>
+          <p>Chatty, old gnome, messy hair. Deeply unqualified-feeling for someone trusted with an airship. Opens every negotiation high and immediately starts second-guessing himself the moment anyone hesitates.</p>
+          <p>Remembers taking Gorrath recently: <em>"Oh, Gorrath? Yeah — yesterday, early. Big load of cargo, wouldn't say what. Archaeological dig, he told me. Seemed in a hurry."</em></p>
+        </div>
+
+        <div class="npc-card neutral">
+          <img class="npc-img" src="images/npcs/merandiel-frostborn.png" alt="Merandiel FrostBorn">
+          <div class="npc-name">Merandiel FrostBorn</div>
+          <div class="npc-role">
+            <span class="tag tag-neutral">Guardian</span>
+            Lich, Keeper of the Seal
+          </div>
+          <p>Became a lich in pursuit of saving his family — and was tricked. Decided to make something good of his immortal life. Has spent centuries contracted to guard crypts housing dangerous things.</p>
+          <p>Casts Zone of Truth and asks the party's intention. Those with honest intentions are allowed to pass. <em>"The seal has been broken — somehow another entrance has been opened. Kaldorzen must be awake."</em></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADVENTURE FLOW ──────────────────────────────────────────── -->
+  <div class="section" id="flow">
+    <div class="section-header">
+      <span class="icon">🗺️</span>
+      <h2>Adventure Flow</h2>
+    </div>
+    <div class="section-body">
+      <div class="room-list">
+
+        <div class="room">
+          <div class="room-number">1</div>
+          <div class="room-content">
+            <div class="room-title">Investigation — The Market Plaza</div>
+            <div class="room-body">Statues and Tarin are missing. Players investigate the plaza — stone fragments near buildings, a trail leading north that soon disappears. NPCs point in different directions. Crok Ruthesk can help with a magic item if players are stuck.</div>
+          </div>
+        </div>
+
+        <div class="room">
+          <div class="room-number">2</div>
+          <div class="room-content">
+            <div class="room-title">Puzzle / Exploration — The Museum</div>
+            <div class="room-body">Clues and testimony lead to the museum. Gorrath is found with his sick wife Melandra. Players can investigate missing items, the covered Medusa's Might wing, and Gorrath's study. His default is to lie — and to offer to guide them on a long route to buy Tarin time. Players must decide whether to trust him.</div>
+          </div>
+        </div>
+
+        <div class="room">
+          <div class="room-number">3</div>
+          <div class="room-content">
+            <div class="room-title">Setback — Getting There &amp; The Dungeon Entrance</div>
+            <div class="room-body">Players take Pete's airship to SoftEarth. The dungeon entrance seal is already cracked open. Sacrificing something of value to the brazier summons Merandiel Frostborn, who shares what he knows and points them toward magic items in the first chamber. The frescoes show Kaldorzen in many forms — all with red glowing eyes.</div>
+          </div>
+        </div>
+
+        <div class="room">
+          <div class="room-number">4</div>
+          <div class="room-content">
+            <div class="room-title">Climax — The Dungeon</div>
+            <div class="room-body">The stone army waits in the second chamber, sealed in magical ice. The boss chamber: Tarin mid-sculpt, stone creatures awakening, Gorrath's betrayal. Players must damage Kaldorzen to half health, then protect one reader reciting the sealing oath uninterrupted for <span class="stat-pill time">3 rounds</span> within <span class="stat-pill dc">60 ft</span>.</div>
+          </div>
+        </div>
+
+        <div class="room">
+          <div class="room-number">5</div>
+          <div class="room-content">
+            <div class="room-title">Resolution</div>
+            <div class="room-body">Kaldorzen sealed → Tarin rescued, army never walks. Dragon weakened → harder fight, still winnable. Failure → Kaldorzen escapes, puts Tarin back to work, army grows. The stone army in the second chamber remains either way — someone will have to deal with that eventually.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- OUTCOME BRANCHES ────────────────────────────────────────── -->
+  <div class="section" id="outcomes">
+    <div class="section-header">
+      <span class="icon">⚖️</span>
+      <h2>Outcome Branches</h2>
+    </div>
+    <div class="section-body">
+      <div class="outcome-grid">
+
+        <div class="outcome early">
+          <div class="outcome-label">Figure It Out Early</div>
+          <p>Players expose Gorrath at the museum — confrontation, possible chase. They race to the dungeon with the location extracted from Gorrath or from Pete. Dragon is <strong>debuffed</strong> when they arrive.</p>
+        </div>
+
+        <div class="outcome late">
+          <div class="outcome-label">Gorrath Deceives Them</div>
+          <p>Gorrath travels with them, guides them the long way. Betrayal happens on the way or at the dungeon entrance. Dragon is at <strong>full health</strong>. If he runs, he ends up fighting alongside Kaldorzen.</p>
+        </div>
+
+        <div class="outcome fail">
+          <div class="outcome-label">Partial Failure</div>
+          <p>Sealing interrupted — dragon awakens <strong>weakened</strong>. Scroll can still seal Kaldorzen if players protect the reader long enough.</p>
+        </div>
+
+        <div class="outcome fail">
+          <div class="outcome-label">Failure</div>
+          <p>Kaldorzen escapes. She puts Tarin back to work building a larger army. When it's ready, Gorrath sends it against Merandiel. If she wins that fight, nothing stops her — a campaign-level threat.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- BEGINNING — CORWIN ──────────────────────────────────────── -->
+  <div class="section" id="beginning">
+    <div class="section-header">
+      <span class="icon">🦉</span>
+      <h2>Beginning — Corwin's Summons</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout dm-note">
+        <div class="callout-title">DM Note</div>
+        <p>Ask each player where and how their character is found when their owl arrives. Read the letter aloud for each player, then send the next owl. Keep Corwin grumpy but not hostile — he summons them to his office and gives details there. Use the owl as a cue to move the scene forward: <em>"The owl takes off, heading toward the hill above the Magister's District."</em> Then move to the next player.</p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Corwin's Office</div>
+        <p>The door opens onto a tall, book-lined office where afternoon light spills through two long windows behind a heavy wooden desk. The desk is cluttered with parchment, ink pots, and a small army of owls — some perched on stacks of books, some blinking from the window frame. In the centre sits Corwin, the headmaster, with a bushy white beard and matching brows, his face grumpy as always.</p>
+        <p>He does not look up. A pale, translucent magical hand moves above the desk, bending letters into tight little scrolls. One by one it seals them with wax, ties each with a pale cord, and passes the finished parcel to a waiting owl.</p>
+        <p>When the first owl stretches its wings and launches into the air, as it flies through the Drifting Crown looking for your character — where does the owl find you? Please describe your character for us.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MAGISTER'S DISTRICT ─────────────────────────────────────── -->
+  <div class="section" id="magister-district">
+    <div class="section-header">
+      <span class="icon">🏛️</span>
+      <h2>Magister's District</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show District</button>
+        <div class="image-container" data-link-id="magisters-district">
+          <img src="images/locations/magisters-district.jpg" alt="Magister's District">
+        </div>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Arriving at the Market</div>
+        <p>The Magister's District opens before you like something out of an old painting — wide cobblestone streets lined with clay-coloured buildings, columns and arched doorways carved with reliefs of figures and creatures you half-recognise. A large town square opens up, surrounded by artisanal shops and buildings. The air smells of warm bread and something else underneath — something earthy and faintly sweet, like fresh soil after rain, but richer.</p>
+        <p>The square is busy. Dozens of canvas tents fill the space, most still tied shut — statues inside, drying, waiting for their moment. At the centre, a stone gryphon rears up from a fountain, armoured and mid-leap, water running off its wings.</p>
+        <p>Three tents near the far end catch your eye — their flaps wide open, the sculpting platforms inside bare. Whatever stood on them is gone.</p>
+        <p>Near the edge of the square, a woman is speaking to two guards in hushed but urgent tones — her hands moving, her voice tight. She hasn't stopped looking around since you noticed her.</p>
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Scene Goal</div>
+        <p>Gather clues, identify the missing statues and Tarin's disappearance, and find the trail. Key leads: Alexandra at the guards, Arinath-Pierre and Agnes for suspicious details, Crok Ruthesk at the magic shop. Let players drive — if they get derailed, have Pierre bump into them and destroy a tray of dragon eclairs, demanding payment.</p>
+      </div>
+
+      <h3>Clues</h3>
+      <p>The statues were not dragged — no drag marks. <span class="stat-pill check">Perception or Investigation DC 14</span> — stone fragments near building edges wherever statues were taken, as if something large and heavy grazed the corners while floating. The trail leads north but disappears after a few hundred feet.</p>
+      <p>Only statues resembling <strong>dangerous creatures or weapons</strong> are missing. No one else was entering dangerous creatures in the contest.</p>
+      <p>What Tarin was making was a secret — he assembled parts separately. Some NPCs saw a tail, a wing, a claw. Nobody saw the whole thing.</p>
+
+      <div class="callout mechanic">
+        <div class="callout-title">If Players Are Stuck</div>
+        <p>Crok Ruthesk walks by into his shop. He can offer goggles that show footsteps or a Speak with Animals scroll — on loan, in exchange for a future favour.</p>
+      </div>
+
+      <h3>NPC Locations</h3>
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Bakery — Arinath-Pierre</button>
+        <div class="image-container" data-link-id="bakery">
+          <img src="images/locations/bakery.jpg" alt="Bakery">
+        </div>
+      </div>
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Tailor — Agnes Fasthand</button>
+        <div class="image-container" data-link-id="village-tailor">
+          <img src="images/locations/village-tailor.jpg" alt="Village Tailor">
+        </div>
+      </div>
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Magic Shop — Crok Ruthesk</button>
+        <div class="image-container" data-link-id="magic-popup">
+          <img src="images/locations/magic-popup.jpg" alt="Magic Popup Shop">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- THE MUSEUM ──────────────────────────────────────────────── -->
+  <div class="section" id="museum">
+    <div class="section-header">
+      <span class="icon">🏺</span>
+      <h2>The Museum</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Museum Study</button>
+        <div class="image-container" data-link-id="museum-study">
+          <img src="images/locations/museum-study.jpg" alt="Museum Study">
+        </div>
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">DM Note — Keep Them Guessing</div>
+        <p>All clues point toward the museum and Gorrath — but everything known about Gorrath's character points the opposite direction. Keep the players guessing. When one clue implicates him, remind them how trusted he is. When they start to suspect, give them something else to wonder about. Don't confirm until they force it.</p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Arriving at the Museum</div>
+        <p>The museum sits at the quieter edge of the Magister's Market — a wide stone building with carved relief panels running along its outer walls, each depicting a different island the Drifting Crown has passed through. Inside, the air is cool and still. Display cases line the walls, filled with relics and artifacts gathered from dozens of expeditions. At the far end, a corridor is sealed off behind a shimmering arcane wall — the words <strong>MEDUSA'S MIGHT — ENTRANCE PROHIBITED</strong> hang above it in glowing letters.</p>
+        <p>Near the entrance you see two figures who don't notice you at first — one kneeling beside the other, holding her hand. Seated on a chair is an ordinarily dressed, white-haired, pale-looking woman, visibly weak. Beside her, kneeling, is a tall man in dark robes with black skin and white dreads. They are deep in conversation. Do you let them finish — or interrupt?</p>
+      </div>
+
+      <h3>Melandra &amp; Gorrath</h3>
+      <p>Melandra greets the players warmly: <em>"Gorrath has been so worried — he's barely slept. Haven't you, dear."</em></p>
+      <p>Gorrath dismisses her gently — <em>"You must rest, Melandra, please"</em> — and guides her toward the back before turning to the players. To them: polite, distracted: <em>"Terrible business. I'm sure it'll sort itself out — these things usually do."</em></p>
+      <p><span class="stat-pill check">Insight DC 13</span> — he is worried, but not about the statues.</p>
+      <p>He guides the players toward his study to discuss details in private.</p>
+
+      <h3>Inside the Museum</h3>
+      <p><span class="stat-pill check">Perception or Investigation DC 14</span> — several empty display mounts. Items are missing — either on Gorrath's person or in his study.</p>
+
+      <div class="callout mechanic">
+        <div class="callout-title">Medusa's Might Wing</div>
+        <p>The shimmering arcane wall blocks a side corridor. <span class="stat-pill check">Arcana DC 12</span> — it is an illusory barrier, not a force wall. Players can walk straight through.</p>
+        <p>Inside: two large empty pedestals where the <strong>Kaldor &amp; Vorbi HardSteel</strong> warrior statues once stood. Along the walls, <strong>six petrified humanoids</strong> in various poses. A placard reads: <em>"Adventurers lost to the Medusa of Serpent's Nest. The island has since vanished. Kept here in the hope that one day it returns."</em></p>
+        <p><span class="stat-pill check">History DC 14</span> — Serpent's Nest was an island the Drifting Crown passed years ago. Without killing the medusa, the petrification cannot be reversed.</p>
+      </div>
+
+      <h3>Gorrath's Study — Items on His Person</h3>
+      <table class="styled-table">
+        <thead>
+          <tr><th>Item</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Ring of Gravity</strong></td><td>On Gorrath's hand. 10 ft radius, DC 14 STR save or lifted. Objects up to 2,000 lbs affected automatically. 3 charges, regains at dawn.</td></tr>
+          <tr><td><strong>Lodestone Compass</strong></td><td>Always points toward the nearest magical ruin or artifact.</td></tr>
+          <tr><td><strong>Slow Necklace</strong></td><td>Casts <em>Slow</em> (DC 16 WIS save).</td></tr>
+          <tr><td><strong>Gauntlet of the Earthshaker</strong></td><td>Strike causes 15 ft shockwave, DC 13 STR save or knocked prone, <span class="stat-pill damage">3d8</span> on fail. Stone fails automatically.</td></tr>
+          <tr><td><strong>Magical Powder Pouch</strong></td><td>Throw or crush: casts <em>Blindness/Deafness</em> or <em>Hold Person</em>.</td></tr>
+          <tr><td><strong>Untouchable Armring</strong></td><td>Teleports a player 30 ft in opposite direction (reverse Misty Step). DC 15 WIS save or relocated.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Gorrath Confrontation</h3>
+      <p>If players present evidence, press him about the ring, or accuse him directly — Gorrath's composure cracks. His default: pivot, not deny. He tells them one of the ruins he surveyed recently seemed unusual — almost like a cracked prison — and offers to take them there himself. His real intention is the long route.</p>
+      <p><span class="stat-pill check">Insight DC 15</span> (automatic for highest roller) — he is guiding them somewhere, not helping them.</p>
+
+      <div class="callout danger">
+        <div class="callout-title">If Players Push Further — Fight Breaks Out</div>
+        <p>Gorrath tries to slow players down and escape by crashing through a study window. At DM's discretion, run a <strong>Chase Skill Challenge</strong>. Resource-draining but not deadly. After the fight each item he carries has <span class="stat-pill time">1d4/2 charges</span> remaining.</p>
+      </div>
+
+      <table class="styled-table">
+        <thead>
+          <tr><th>Round</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Uses <strong>Slow Necklace</strong> (DC 16 WIS save) — catches as many players as possible, then backs away.</td></tr>
+          <tr><td>2</td><td><strong>Untouchable Armring</strong> — teleports a player 30 ft in opposite direction (DC 15 WIS or relocated).</td></tr>
+          <tr><td>3+</td><td><em>Shield</em> / <em>Counterspell</em> reactively, tries to disengage and flee.</td></tr>
+          <tr><td>4</td><td><strong>Powder Pouch</strong> — Blindness/Deafness or Hold Person.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Secret Door</div>
+        <p><span class="stat-pill check">Perception or Investigation DC 15</span> — one wall panel doesn't quite match. A false door. Behind it: the HardSteel statues crated and ready to move tonight.</p>
+        <p>If Gorrath escapes: he runs to Kaldorzen's side. If cornered and captured: <span class="stat-pill dc">Intimidation or Persuasion DC 20</span> to get the dungeon location. Mentioning Melandra or offering to help her lowers it to DC 14.</p>
+        <p>If players can't get the location from Gorrath, <strong>Pete</strong> at the airship docks remembers taking him recently.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- PETE & THE AIRSHIP ──────────────────────────────────────── -->
+  <div class="section" id="pete-airship">
+    <div class="section-header">
+      <span class="icon">🚢</span>
+      <h2>Pete &amp; The Airship</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Airship Travel</button>
+        <div class="image-container" data-link-id="traveling">
+          <img src="images/locations/traveling.jpg" alt="Traveling by Airship">
+        </div>
+      </div>
+
+      <p>Pete runs the ship that goes to SoftEarth — transporting explorers, archaeologists, Horizon Keepers. He's not hard to convince, but he <em>will</em> ask for a magic item upfront. He opens high. Any pushback — a raised eyebrow, a sigh, <em>"really?"</em> — and he starts offering to take less. He'll settle for coin, a promise, or a good story. Mention Horizon Keeper business and he folds immediately.</p>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Pete on Gorrath</div>
+        <p><em>"Oh, Gorrath? Yeah — yesterday, early. Big load of cargo, wouldn't say what. Archaeological dig, he told me. Seemed in a hurry."</em> He can point players to the exact landing spot on SoftEarth.</p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Arriving at SoftEarth</div>
+        <p>The island rises out of the clouds slowly — pale and warm, sandstone cliffs catching the morning light like something half-carved. As Pete brings the ship down, you see the rocky terrain up close: cream-coloured, with a faint warmth to it that stone shouldn't have. The air smells of it immediately — that earthy sweetness you noticed back in the square, but stronger. More concentrated.</p>
+        <p>The ship hovers over a shallow canyon, turquoise water threading between pale boulders below. Somewhere ahead, past a natural stone arch, the cliffs close in. Pete points: <em>"He went that way."</em> He drops the rope ladder. <em>"Should I wait here — or come back?"</em></p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Approaching the Entrance</div>
+        <p>The canyon narrows. Lush, dense vines climb and cover the face of a cliff in front of you. The wind picks up — strong enough to whip your hair across your face — and for just a moment the curtain of leaves pulls back. Beneath it: stone. Cut stone. Columns, half-buried in the cliff, carved with symbols you don't recognise. The wind dies. The vines settle back.</p>
+      </div>
+
+      <div class="callout mechanic">
+        <div class="callout-title">History DC 13</div>
+        <p>The carvings are not decorative. A prayer. Addressed to something beneath the earth.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- TEMPLE ENTRANCE ─────────────────────────────────────────── -->
+  <div class="section" id="temple-entrance">
+    <div class="section-header">
+      <span class="icon">🏛️</span>
+      <h2>Temple Entrance</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout dm-note">
+        <div class="callout-title">Scene Overview</div>
+        <p>The tomb's outer entrance. Players discover a sacrificial puzzle guarded by <strong>Merandiel Frostborn</strong>. The lich is not hostile — he evaluates intentions and grants passage if they appear genuine. He points them toward magical items in the first chamber.</p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud — Inside the Cave</div>
+        <p>The path after the entrance is more cave than construction, but there is a definite route to follow. You go deep into the earth — far enough that you begin to doubt there is an end to this place. Completely dark. No dust. The air is still and silent. There is a disturbing feeling creeping up the back of your neck the deeper you go.</p>
+        <p>You reach a dead end in a large cavern and find yourself facing giant double doors, tens of feet high. Frescoes line the walls. At the centre, against the far wall, is a statue of an earth elemental: taking a knee, palms upward, holding something up. Before it sits a small brazier, burning with golden magical fire.</p>
+      </div>
+
+      <div class="callout mechanic">
+        <div class="callout-title">Examining the Frescoes</div>
+        <p>Old and cracked — but they tell a story of battle, ending with the imprisonment of the figure in the central statue. The creature takes many different forms across the panels, but every form has the same thing: <strong>red glowing eyes</strong>, depicted glowing on the frescoes even now.</p>
+        <p><em>"You surmise you are standing in the entrance to a prison, meant to keep something — or someone — in."</em></p>
+      </div>
+
+      <div class="callout lore">
+        <div class="callout-title">Inscriptions on the Statue</div>
+        <p><em>"If time comes when we can't stand guard — the dead shall guard he who has been locked."</em></p>
+        <p><em>"Only those may pass who prove their worth. Sacrifice that which they hold dear."</em></p>
+      </div>
+
+      <div class="callout mechanic">
+        <div class="callout-title">The Cracked Wall</div>
+        <p>The doors are sealed — but the wall beside them is not. A fissure splits the rock, wide enough to squeeze through. The magic holds the lock; the stone did not. This was carved wider by something — wide enough for a large person to fit through. Fresh marks.</p>
+      </div>
+
+      <h3>The Sacrifice Puzzle</h3>
+      <p>Throwing something of value into the brazier begins the ritual. At DM's discretion — if the sacrifice doesn't feel genuine, roll a percentile or ask for a Persuasion check. As they make the final sacrifice, a lich appears.</p>
+
+      <h3>Merandiel FrostBorn</h3>
+      <p>Merandiel materialises — calm and deliberate. He casts <em>Zone of Truth</em> and asks their purpose. Those with honest, good intentions are allowed to pass.</p>
+      <p><em>"The seal has been broken. Somehow another entrance has been opened. Kaldorzen must be awake — you must move quickly."</em></p>
+      <p>He knows where the sealing scroll is and can direct them to the First Chamber.</p>
+
+    </div>
+  </div>
+
+
+  <!-- FIRST CHAMBER ───────────────────────────────────────────── -->
+  <div class="section" id="first-chamber">
+    <div class="section-header">
+      <span class="icon">⚔️</span>
+      <h2>Chamber 1 — The Oath Room</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout dm-note">
+        <div class="callout-title">Chamber Overview</div>
+        <p>A ceremonial chamber housing six statues locked in an oath ritual. The central paladin holds a sword inscribed with the sealing instructions. Players must speak an oath to unlock a hidden chamber where magical items and the sealing scroll are stored. The scroll is critical — the only way to seal Kaldorzen after she's weakened.</p>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud</div>
+        <p>With an almost deafening sound, the giant stone wall lowers into the floor. Dust stirs — you cover your faces. When it settles, a small chamber opens before you, perhaps the size of the entrance hall, with an open arch leading into a much larger and completely dark space beyond.</p>
+        <p>This room is illuminated. A golden, soft glow emanates from the eyes of six statues on small pedestals — all pointing their swords inward toward the centre. A paladin who looks carefully recognises this as a ritual — they are taking an oath. But the central paladin holds his sword <em>horizontally</em>, which is very unusual. There is something written on the blade.</p>
+      </div>
+
+      <div class="callout lore">
+        <div class="callout-title">Inscription on the Sword</div>
+        <p><em>"To those who fight for those who can't — tell me your oath and my sword shall yield."</em></p>
+      </div>
+
+      <p>When any party member speaks an oath aloud, a stone door opens in the wall — revealing a small hidden chamber.</p>
+
+      <h3>The Hidden Room — Magic Items &amp; the Scroll</h3>
+      <p>Inside: magic items laid out on stone tables, some recognisable from the entrance frescoes. And a <strong>sealing scroll</strong>.</p>
+
+      <div class="callout danger">
+        <div class="callout-title">The Sealing Scroll</div>
+        <p>Must be read aloud, uninterrupted, for <span class="stat-pill time">3 rounds</span> within <span class="stat-pill dc">60 ft</span> of Kaldorzen — but only <strong>after she is brought to half health</strong>. The scroll activates at that moment. Both hands occupied, cannot move, cannot attack, cannot cast. If interrupted for any reason, the round counter resets — it does not pause.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SECOND CHAMBER ──────────────────────────────────────────── -->
+  <div class="section" id="second-chamber">
+    <div class="section-header">
+      <span class="icon">❄️</span>
+      <h2>Chamber 2 — The Army</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud</div>
+        <p>This chamber is completely dark and extremely cold — other than the faintest source of light at the very far end. Anyone have a light source?</p>
+        <p>This gigantic hall stretches further than your torchlight can reach — tens of feet tall, filled with row upon row of pillar-like pedestals. Atop each one stands a figure. Their arms, their torso — they are not humanoid. They wear no armour. You soon realise what you are looking at: earth elementals. Primordial warriors. Hundreds of them — enough to threaten cities. Kingdoms.</p>
+        <p>But they are not moving. Each one is encased in ice — thick, pale blue, perfectly smooth. The cold radiates off them in waves. Whatever imprisoned Kaldorzen imprisoned her army alongside her, sealed in the same moment, frozen mid-stance. Some still have their fists raised. Some are mid-step. The ice has held for centuries.</p>
+        <p>It is still holding. For now.</p>
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">DM Note — Let It Land</div>
+        <p>Nothing attacks here. The ice is immune to all low-level magical damage — instantly evident that whatever created it is beyond conventional means. This chamber is atmospheric. Give the players a moment to feel the scale of what is at stake, then push them toward the light at the far end.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- BOSS CHAMBER ────────────────────────────────────────────── -->
+  <div class="section" id="boss-chamber">
+    <div class="section-header">
+      <span class="icon">🐉</span>
+      <h2>Boss Chamber</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="image-reveal">
+        <button class="image-toggle">Show Boss Chamber</button>
+        <div class="image-container" data-link-id="boss-room">
+          <img src="images/locations/boss-room.jpg" alt="Boss Chamber">
+        </div>
+      </div>
+
+      <div class="read-aloud">
+        <div class="ra-label">Read aloud</div>
+        <p>The chamber opens up around you — you feel dwarfed by its sheer size, lost in its darkness. The only light comes from a single break in the rock overhead, a beam falling straight to the far end. It illuminates a tiered altar with wide stone steps. At the top: a giant stone dragon, one wing complete, the other a skeleton of half-formed stone. Below the dragon, moving earth like water — Tarin, sculpting.</p>
+        <p>At the top of the steps, coiled low, a stone serpent. Two glowing orbs of red. A voice booms through the chamber: <em>"You brought the scroll... it seems I'll have to deal with you myself."</em> The red eyes flare. Kaldorzen begins channelling her essence into the stone dragon.</p>
+        <p>Torches all over the walls flare up one by one — revealing a rocky, devastated cavern, shaken by earthquake, filled with crevices and jagged rocks. Two large figures leap and land between you and Kaldorzen — a stone Owlbear and a stone Minotaur.</p>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-title">Gorrath's Betrayal</div>
+        <p>Whether he was travelling with the party or arrived separately — here, he reveals himself. He attacks from behind or the flank. If he fled from the museum, he is already at Kaldorzen's side.</p>
+        <p>Throughout the fight, Kaldorzen reads players' minds and taunts them with what she finds.</p>
+      </div>
+
+      <h3>Combatants</h3>
+
+      <p><strong><a class="wiki-link" href="#misc-owlbear">Owlbear</a></strong> — 57 HP. Resistance: bludgeoning, piercing, slashing from nonmagical attacks. Vulnerability: thunder. <strong>Legendary Action:</strong> Leap 40 ft — <span class="stat-pill dc">DEX DC 15</span> or knocked prone and take <span class="stat-pill damage">1d10</span> in 10 ft radius.</p>
+
+      <p><strong><a class="wiki-link" href="#misc-minotaur">Minotaur</a></strong> — Resistance: bludgeoning, piercing, slashing from nonmagical attacks. Vulnerability: thunder. Charges recklessly when moving at least 10 ft. Slams waraxe into the ground — triggers <strong>Eruption</strong> battlefield action (<span class="stat-pill damage">2d8</span>, <span class="stat-pill dc">DEX DC 16</span>).</p>
+
+      <p><strong><a class="wiki-link" href="#misc-young-white-dragon">Dragon (Kaldorzen's Vessel)</a></strong> — Resistance: bludgeoning, piercing, slashing from nonmagical attacks. Vulnerability: thunder. Replace cold flavour with earth — cold breath becomes <strong>stone pillar eruption</strong>, cold damage becomes bludgeoning. <strong>Lair Action (Initiative 20):</strong> one pillar erupts beneath a player — <span class="stat-pill dc">DEX DC 14</span> or <span class="stat-pill damage">2d8 bludgeoning</span> and knocked prone.</p>
+
+      <p><strong>Gorrath</strong> — <a class="wiki-link" href="#misc-mage">Mage</a> statblock + 3 legendary actions. Prioritises locking down the scroll-reader. Tries to escape if losing.</p>
+
+      <h3>Tarin</h3>
+      <p>Tarin is <strong>not hostile</strong>. He is under duress, not corrupted. The moment someone reaches him and calls out, he stops sculpting. Physically unharmed but shaken — he won't say much at first. Let players lead.</p>
+
+    </div>
+  </div>
+
+
+  <!-- SEALING MECHANIC ────────────────────────────────────────── -->
+  <div class="section" id="sealing">
+    <div class="section-header">
+      <span class="icon">🔒</span>
+      <h2>Sealing Mechanic</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout mechanic">
+        <div class="callout-title">Trigger</div>
+        <p>Once Kaldorzen hits half health, the dragon staggers — a visible crack appears across her chest and golden light bleeds through. The scroll in a player's hand activates and begins glowing. This is the moment.</p>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-title">The Mechanic</div>
+        <p>One player reads the scroll for <span class="stat-pill time">3 rounds</span> within <span class="stat-pill dc">60 ft</span> of Kaldorzen:</p>
+        <p>— Both hands occupied. Cannot move. Cannot attack. Cannot cast.<br>
+        — <strong>Counter resets</strong> on any interruption — does not pause.<br>
+        — Each successful round: the crack on the dragon widens, light gets brighter.<br>
+        — The dragon's lair action now specifically targets the reader — stone pillars and walls try to cut them off from the party.</p>
+        <p>The fight shifts from <em>"kill the dragon"</em> to <em>"protect the reader while finishing the dragon off."</em></p>
+      </div>
+
+      <div class="callout success">
+        <div class="callout-title">Round 3 Payoff</div>
+        <p>The crack shatters open. A deep vibration through the floor, through everyone's bones. Golden light explodes outward — Kaldorzen's voice cuts off as her essence is pulled screaming back into the prison, like water rushing into a drain. The dragon goes still. Begins to crumble, piece by piece. The torches die one by one.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ENDING ──────────────────────────────────────────────────── -->
+  <div class="section" id="ending">
+    <div class="section-header">
+      <span class="icon">🌅</span>
+      <h2>Ending</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout success">
+        <div class="callout-title">Success — Kaldorzen Is Sealed</div>
+        <p>The crack tears open. Golden light explodes outward from the dragon's chest, flooding the chamber, and Kaldorzen's voice cuts off as her essence is pulled back into the prison at the far end of the chamber — like water rushing into a drain — until there is nothing left of her. The dragon crumbles, piece by piece. The torches die one by one, until only the pale column of light from the ceiling crack remains.</p>
+        <p>The sealing re-anchors the prison's magic. The ice in the second chamber holds. The army is not going anywhere — not today.</p>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-title">Failure — Kaldorzen Escapes</div>
+        <p>She's free — but not yet done. To truly escape she needs Merandiel defeated, and her current army isn't enough. She puts Tarin back to work, pulling stone from the island and the ruins. Once the army is ready, Gorrath sends it against Merandiel's forces. If she wins that fight, nothing stops her.</p>
+      </div>
+
+      <h3>Aftermath</h3>
+
+      <p><strong>Tarin</strong> — physically unharmed but shaken. Doesn't say much at first. If players approach him gently, he'll eventually talk. Let them lead.</p>
+
+      <p><strong>The ice army</strong> — remains. Kaldorzen's sealing re-anchors the prison's magic and the ice holds. Players may ask what happens to them. The honest answer: someone will have to deal with that eventually. Not today.</p>
+
+      <h3>Gorrath — Three Branches</h3>
+      <div class="outcome-grid">
+
+        <div class="outcome early">
+          <div class="outcome-label">Captured at the Museum</div>
+          <p>He learns from the players that it's over. The pact is void. The cure never came. It lands hard. He cooperates fully and doesn't resist. Whether he faces consequences is a player decision.</p>
+        </div>
+
+        <div class="outcome fail">
+          <div class="outcome-label">Fled &amp; Fought Alongside Kaldorzen</div>
+          <p>When she's pulled back into the prison, his reason to fight vanishes. He stops. Falls to his knees, filled with despair. Everything he did — for nothing. What happens next is up to the players.</p>
+        </div>
+
+      </div>
+
+      <div class="callout dm-note">
+        <div class="callout-title">Melandra's Fate — DM's Call</div>
+        <p><strong>Darker ending:</strong> The pact is void. Melandra's illness continues. Gorrath got nothing. His betrayal cost everyone and bought him nothing.</p>
+        <p><strong>Leave it open:</strong> The players now know about Melandra. They could seek another way — a lead on the medusa, a healer, something. Gorrath has a reason to cooperate rather than simply collapse. Recommended if you want the door open for a follow-up.</p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MAGIC ITEMS ─────────────────────────────────────────────── -->
+  <div class="section" id="magic-items">
+    <div class="section-header">
+      <span class="icon">✨</span>
+      <h2>Magic Items</h2>
+    </div>
+    <div class="section-body">
+      <p>Found in the hidden room off the First Chamber. Some recognisable from the entrance frescoes. Curated specifically to help against Kaldorzen — lightning, force, teleportation, strength.</p>
+      <table class="styled-table">
+        <thead>
+          <tr><th>d10</th><th>Item</th><th>Effect</th><th>Charges</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Spear of the Shattered Sky</strong></td><td>Throw → lightning storm (15 ft radius, <span class="stat-pill damage">4d8 lightning</span>, <span class="stat-pill dc">DEX DC 14</span>). Fail: knocked prone. Spear reforms in hand.</td><td>1 use</td></tr>
+          <tr><td>2</td><td><strong>Orb of Volcanic Ruin</strong></td><td>Throw → lava burst (20 ft radius, <span class="stat-pill damage">5d6 fire</span> + difficult terrain 1 round).</td><td>1 use</td></tr>
+          <tr><td>3</td><td><strong>Cape of Elusion</strong></td><td>Reaction when hit — halve the damage.</td><td>1 use</td></tr>
+          <tr><td>4</td><td><strong>Stonebreaker Maul</strong></td><td>+1 maul. On hit, +<span class="stat-pill damage">2d6 force</span> vs stone creatures/objects.</td><td>3 procs</td></tr>
+          <tr><td>5</td><td><strong>Ring of Thunder Step</strong></td><td>Teleport 90 ft + thunder explosion (<span class="stat-pill damage">3d10 thunder</span>, 5 ft).</td><td>1 use</td></tr>
+          <tr><td>6</td><td><strong>Potion of Giant Strength (Hill)</strong></td><td>STR becomes 21 for 1 hour.</td><td>1 use</td></tr>
+          <tr><td>7</td><td><strong>Figurine of the Marble Guardian</strong></td><td>Summon a Stone Owlbear for 2 rounds.</td><td>1 use</td></tr>
+          <tr><td>8</td><td><strong>Blade of Echoing Strikes</strong></td><td>Spectral echo deals +<span class="stat-pill damage">1d8</span> damage once per turn.</td><td>5 rounds</td></tr>
+          <tr><td>9</td><td><strong>Gloves of Shaping Earth</strong></td><td><em>Mold Earth</em> at will; once: stone spike line (<span class="stat-pill damage">3d8</span>).</td><td>1 big use</td></tr>
+          <tr><td>10</td><td><strong>Horn of the War Titan</strong></td><td>All allies gain advantage on attacks for 1 round.</td><td>1 use</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- BATTLEFIELD ACTIONS ─────────────────────────────────────── -->
+  <div class="section" id="battlefield">
+    <div class="section-header">
+      <span class="icon">⚡</span>
+      <h2>Battlefield Actions</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="callout mechanic">
+        <div class="callout-title">How It Works</div>
+        <p><strong>Tell Phase</strong> — starts at the <em>end</em> of the boss's turn. No damage — just a signal.<br>
+        <strong>Resolution Phase</strong> — triggers at the <em>start</em> of the boss's next turn. Players have one full initiative cycle to react. Counter resets if neutralized or mitigated before it fires.</p>
+      </div>
+
+      <details class="ba-card">
+        <summary><span>Eruption (Minotaur)</span></summary>
+        <div class="ba-body">
+          <div class="ba-phase">
+            <span class="ba-label tell">Tell</span>
+            <span class="ba-text">The Minotaur drives its waraxe into the stone floor with all its might. Cracks snake outward from the impact. Energy glows through them — brightest at the epicentre — and begins building. The closer you stand, the stronger the trembling feels underfoot.</span>
+          </div>
+          <div class="ba-phase">
+            <span class="ba-label mitigate">Mitigate</span>
+            <span class="ba-text">Move as far as possible from the impact point before the Minotaur's next turn.</span>
+          </div>
+          <div class="ba-phase">
+            <span class="ba-label resolution">Resolution</span>
+            <span class="ba-text"><strong>Within 20 ft:</strong> <span class="stat-pill dc">DEX DC 16</span> — full <span class="stat-pill damage">2d8</span> on fail, half on success. <strong>25 ft or more:</strong> DEX DC 16 — half on fail, none on success.</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="ba-card">
+        <summary><span>Stone Pillar Surge (Dragon — Lair Action)</span></summary>
+        <div class="ba-body">
+          <div class="ba-phase">
+            <span class="ba-label tell">Tell</span>
+            <span class="ba-text">Initiative count 20. The dragon drives its head into the stone floor. A deep rumble builds. Hairline cracks spread fast across the ground — marking positions directly under each creature the dragon can see. During the sealing, it specifically targets the scroll-reader and tries to wall them off.</span>
+          </div>
+          <div class="ba-phase">
+            <span class="ba-label mitigate">Mitigate</span>
+            <span class="ba-text">Move off your marked position before initiative count 20 on the next round.</span>
+          </div>
+          <div class="ba-phase">
+            <span class="ba-label resolution">Resolution</span>
+            <span class="ba-text">Pillars erupt from each marked position. <span class="stat-pill dc">DEX DC 14</span> — <span class="stat-pill damage">2d8 bludgeoning</span> and knocked prone on fail, half on success.</span>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+
+  <!-- LINKED NOTES (injected by build script) ─────────────────── -->
+<!-- MISC-SECTION-START -->
+<div class="section" id="misc">
+  <div class="section-header">
+    <span class="icon">🔗</span>
+    <h2>Linked Notes</h2>
+  </div>
+  <div class="section-body">
+    <p style="font-size:0.85rem;color:var(--ink-light);margin-bottom:1rem;">
+      Notes referenced in this adventure. Click to expand. Hover over any
+      <a class="wiki-link" style="pointer-events:none">highlighted link</a>
+      in the text to preview.
+    </p>
+    
+<details class="misc-entry" id="misc-mage"
+  data-preview-title="Mage"
+  data-preview-body="Medium humanoid, CR 6">
+  <summary class="misc-summary">
+    <span class="misc-tag misc-tag-monster">Monster</span>
+    mage
+  </summary>
+  <div class="misc-content">
+    
+<div class="statblock">
+  <div class="sb-name">Mage</div>
+  <div class="sb-type">Medium, humanoid (any race), Any alignment</div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Armor Class</span> 12 (15 with mage armor)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Hit Points</span> 40 (9d8)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Speed</span> 30 ft.</div>
+  </div>
+  <div class="sb-abilities"><div class="sb-ability"><span>STR</span><span>9 (-1)</span></div><div class="sb-ability"><span>DEX</span><span>14 (+2)</span></div><div class="sb-ability"><span>CON</span><span>11 (+0)</span></div><div class="sb-ability"><span>INT</span><span>17 (+3)</span></div><div class="sb-ability"><span>WIS</span><span>12 (+1)</span></div><div class="sb-ability"><span>CHA</span><span>11 (+0)</span></div></div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Saving Throws</span> Int +6, Wis +4</div>
+    <div class="sb-prop"><span class="sb-prop-label">Skills</span> Arcana +6, History +6</div>
+    <div class="sb-prop"><span class="sb-prop-label">Senses</span> passive Perception 11</div><div class="sb-prop"><span class="sb-prop-label">Languages</span> any four languages</div><div class="sb-prop"><span class="sb-prop-label">Challenge</span> 6</div>
+  </div>
+  <hr class="sb-divider"><div class="sb-action"><span class="sb-action-name">Spellcasting.</span> The mage is a 9th-level spellcaster. Its spellcasting ability is Intelligence (spell save DC 14, +6 to hit with spell attacks). The mage has the following wizard spells prepared:
+
+Cantrips (at will): fire bolt, light, mage hand, prestidigitation
+
+1st level (4 slots): detect magic, mage armor, magic missile, shield
+
+2nd level (3 slots): misty step, suggestion
+
+3rd level (3 slots): counterspell, fireball, fly
+
+4th level (3 slots): greater invisibility, ice storm
+
+5th level (1 slots): cone of cold</div>
+  <div class="sb-section-title">Actions</div><div class="sb-action"><span class="sb-action-name">Dagger.</span> Melee  or Ranged Weapon Attack: +5 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 4 (1d4 + 2) piercing damage.</div>
+  
+</div>
+
+    <div class="sb-lore">
+      <p>Mages spend their lives in the study and practice of magic. Good-aligned mages offer counsel to nobles and others in power, while evil mages dwell in isolated sites to perform unspeakable experiments without interference.</p>
+    </div>
+  
+  </div>
+</details>
+
+<details class="misc-entry" id="misc-minotaur"
+  data-preview-title="Minotaur"
+  data-preview-body="Large monstrosity, CR 3">
+  <summary class="misc-summary">
+    <span class="misc-tag misc-tag-monster">Monster</span>
+    minotaur
+  </summary>
+  <div class="misc-content">
+    
+<div class="statblock">
+  <div class="sb-name">Minotaur</div>
+  <div class="sb-type">Large, monstrosity, Chaotic Evil</div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Armor Class</span> 14 (natural armor)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Hit Points</span> 76 (9d10 + 27)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Speed</span> 40 ft.</div>
+  </div>
+  <div class="sb-abilities"><div class="sb-ability"><span>STR</span><span>18 (+4)</span></div><div class="sb-ability"><span>DEX</span><span>11 (+0)</span></div><div class="sb-ability"><span>CON</span><span>16 (+3)</span></div><div class="sb-ability"><span>INT</span><span>6 (-2)</span></div><div class="sb-ability"><span>WIS</span><span>16 (+3)</span></div><div class="sb-ability"><span>CHA</span><span>9 (-1)</span></div></div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    
+    <div class="sb-prop"><span class="sb-prop-label">Skills</span> Perception +7</div>
+    <div class="sb-prop"><span class="sb-prop-label">Senses</span> darkvision 60 ft., passive Perception 17</div><div class="sb-prop"><span class="sb-prop-label">Languages</span> Abyssal</div><div class="sb-prop"><span class="sb-prop-label">Challenge</span> 3</div>
+  </div>
+  <hr class="sb-divider"><div class="sb-action"><span class="sb-action-name">Charge.</span> If the minotaur moves at least 10 feet straight toward a target and then hits it with a gore attack on the same turn, the target takes an extra 9 (2d8) piercing damage. If the target is a creature, it must succeed on a DC 14 Strength saving throw or be pushed up to 10 feet away and knocked prone.</div><div class="sb-action"><span class="sb-action-name">Labyrinthine Recall.</span> The minotaur can perfectly recall any path it has traveled.</div><div class="sb-action"><span class="sb-action-name">Reckless.</span> At the start of its turn, the minotaur can gain advantage on all melee weapon attack rolls it makes during that turn, but attack rolls against it have advantage until the start of its next turn.</div>
+  <div class="sb-section-title">Actions</div><div class="sb-action"><span class="sb-action-name">Greataxe.</span> Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 17 (2d12 + 4) slashing damage.</div><div class="sb-action"><span class="sb-action-name">Gore.</span> Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) piercing damage.</div>
+  
+</div>
+
+    <div class="sb-lore">
+      <p>A minotaur's roar is a savage battle cry that most civilized creatures fear. Born into the mortal realm by demonic rites, minotaurs are savage conquerors and carnivores that live for the hunt. Their brown or black fur is stained with the blood of fallen foes, and they carry the stench of death.</p><h4>The Beast Within</h4><p>Most minotaurs are solitary carnivores that roam labyrinthine dungeons, twisting caves, primeval woods, and the maze-like streets and passages of desolate ruins. A minotaur can visualize every route it might take to close the distance to its prey.</p><p>The scent of blood, the tearing of flesh, and the cracking of bones spur a minotaur's lust for carnage, overwhelming all thought and reason. In a blood rage, a minotaur charges anything it sees, butting and goring like a battering ram, then chopping the fallen in twain.</p><p>Apart from ambushing creatures that wander into its labyrinth, a minotaur cares little for strategy or tactics. Minotaurs seldom organize, they don't respect authority or hierarchy, and they are notoriously difficult to enslave, let alone control.</p><h4>Cults of the Horned King</h4><p>Minotaurs are the dark descendants of humanoids transformed by the rituals of cults that reject the oppression of authority by returning to nature. Inductees often mistake these cults for druidic circles or totemic religions whose ceremonies involve entering a labyrinth while wearing a ceremonial animal mask.</p><p>Within these bounded environments, cultists hunt, kill, and eat wild beasts, indulging their basest primal urges. In the end, however, sacrificial animals are exchanged for humanoid sacrifice-sometimes an inductee that tried to escape the cult after learning its secrets. These labyrinths become blood-soaked halls of slaughter, echoing to the cultists' savagery.</p><p>Unknown to all but their highest-ranking leaders, these mystery cults are creations of the demon lord Baphomet, the Horned King, whose layer of the Abyss is a gigantic labyrinth. Some of his followers are fervent supplicants that plead for strength and power. Others come to the cult seeking a life free from authority's chains-and are liberated of their humanity instead as Baphomet transforms them into the minotaurs that echo his own savage form.</p><p>Although they begin as creations of the Horned King, minotaurs can breed true with one another, giving rise to an independent race of Baphomet's savage children in the world.</p>
+    </div>
+  
+  </div>
+</details>
+
+<details class="misc-entry" id="misc-owlbear"
+  data-preview-title="Owlbear"
+  data-preview-body="Large monstrosity, CR 3">
+  <summary class="misc-summary">
+    <span class="misc-tag misc-tag-monster">Monster</span>
+    owlbear
+  </summary>
+  <div class="misc-content">
+    
+<div class="statblock">
+  <div class="sb-name">Owlbear</div>
+  <div class="sb-type">Large, monstrosity, Unaligned</div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Armor Class</span> 13 (natural armor)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Hit Points</span> 59 (7d10 + 21)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Speed</span> 40 ft.</div>
+  </div>
+  <div class="sb-abilities"><div class="sb-ability"><span>STR</span><span>20 (+5)</span></div><div class="sb-ability"><span>DEX</span><span>12 (+1)</span></div><div class="sb-ability"><span>CON</span><span>17 (+3)</span></div><div class="sb-ability"><span>INT</span><span>3 (-4)</span></div><div class="sb-ability"><span>WIS</span><span>12 (+1)</span></div><div class="sb-ability"><span>CHA</span><span>7 (-2)</span></div></div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    
+    <div class="sb-prop"><span class="sb-prop-label">Skills</span> Perception +3</div>
+    <div class="sb-prop"><span class="sb-prop-label">Senses</span> darkvision 60 ft., passive Perception 13</div><div class="sb-prop"><span class="sb-prop-label">Challenge</span> 3</div>
+  </div>
+  <hr class="sb-divider"><div class="sb-action"><span class="sb-action-name">Keen Sight and Smell.</span> The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell.</div>
+  <div class="sb-section-title">Actions</div><div class="sb-action"><span class="sb-action-name">Multiattack.</span> The owlbear makes two attacks: one with its beak and one with its claws.</div><div class="sb-action"><span class="sb-action-name">Beak.</span> Melee Weapon Attack: +7 to hit, reach 5 ft., one creature. Hit: 10 (1d10 + 5) piercing damage.</div><div class="sb-action"><span class="sb-action-name">Claws.</span> Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 14 (2d8 + 5) slashing damage.</div>
+  
+</div>
+
+    <div class="sb-lore">
+      <p>An owlbear's screech echoes through dark valleys and benighted forests, piercing the quiet night to announce the death of its prey. Feathers cover the thick, shaggy coat of its bearlike body, and the limpid pupils of its great round eyes stare furiously from its owlish head.</p><h4>Deadly Ferocity</h4><p>The owlbear's reputation for ferocity, aggression, stubbornness, and sheer ill temper makes it one of the most feared predators of the wild. There is little, if anything, that a hungry owlbear fears. Even monsters that outmatch an owlbear in size and strength avoid tangling with it, for this creature cares nothing about a foe's superior strength as it attacks without provocation.</p><h4>Consummate Predators</h4><p>An owlbear emerges from its den around sunset and hunts into the darkest hours of the night, hooting or screeching to declare its territory, to search for a mate, or to flush prey into its hunting grounds. These are typically forests familiar to the owlbear, and dense enough to limit its quarry's escape routes.</p><p>An owlbear makes its den in a cave or ruin littered with the bones of its prey. It drags partially devoured kills back to its den, storing portions of the carcass among the surrounding rocks, bushes, and trees. The scent of blood and rotting flesh hangs heavy near an owlbear's lair, attracting scavengers and thus luring more prey.</p><p>Owlbears hunt alone or in mated pairs. If quarry is plentiful, a family of owlbears might remain together for longer than is required to rear offspring. Otherwise, they part ways as soon as the young are ready to hunt.</p><h4>Savage Companions</h4><p>Although they are more intelligent than most animals, owlbears are difficult to tame. However, with enough time, food, and luck, an intelligent creature can train an owlbear to recognize it as a master, making it an unflinching guard or a fast and hardy mount. People of remote frontier settlements have even succeeded at racing owlbears, but spectators bet as often on which owlbear will attack its handler as they do on which will reach the finish line first.</p><p>Elven communities encourage owlbears to den beneath their treetop villages, using the beasts as a natural defense during the night. Hobgoblins favor owlbears as war beasts, and hill giants and frost giants sometimes keep owlbears as pets. A starved owlbear might show up in a gladiatorial arena, ruthlessly eviscerating and devouring its foes before a bloodthirsty audience.</p><h4>Owlbear Origins</h4><p>Scholars have long debated the origins of the owlbear. The most common theory is that a demented wizard created the first specimen by crossing a giant owl with a bear. However, venerable elves claim to have known these creatures for thousands of years, and some fey insist that owlbears have always existed in the Feywild.</p><p><em>[!quote] A quote from Xarshel Ravenshadow, Gnome Professor of Transmutative Science at Morgrave University  </em> <em>> The only good thing about owlbears is that the wizard who created them is probably dead.</em></p>
+    </div>
+  
+  </div>
+</details>
+
+<details class="misc-entry" id="misc-young-white-dragon"
+  data-preview-title="Young White Dragon"
+  data-preview-body="Large dragon, CR 6">
+  <summary class="misc-summary">
+    <span class="misc-tag misc-tag-monster">Monster</span>
+    young-white-dragon
+  </summary>
+  <div class="misc-content">
+    
+<div class="statblock">
+  <div class="sb-name">Young White Dragon</div>
+  <div class="sb-type">Large, dragon, Chaotic Evil</div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Armor Class</span> 17 (natural armor)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Hit Points</span> 133 (14d10 + 56)</div>
+    <div class="sb-prop"><span class="sb-prop-label">Speed</span> 40 ft., burrow 20 ft., fly 80 ft., swim 40 ft.</div>
+  </div>
+  <div class="sb-abilities"><div class="sb-ability"><span>STR</span><span>18 (+4)</span></div><div class="sb-ability"><span>DEX</span><span>10 (+0)</span></div><div class="sb-ability"><span>CON</span><span>18 (+4)</span></div><div class="sb-ability"><span>INT</span><span>6 (-2)</span></div><div class="sb-ability"><span>WIS</span><span>11 (+0)</span></div><div class="sb-ability"><span>CHA</span><span>12 (+1)</span></div></div>
+  <hr class="sb-divider">
+  <div class="sb-props">
+    <div class="sb-prop"><span class="sb-prop-label">Saving Throws</span> Dex +3, Con +7, Wis +3, Cha +4</div>
+    <div class="sb-prop"><span class="sb-prop-label">Skills</span> Perception +6, Stealth +3</div>
+    <div class="sb-prop"><span class="sb-prop-label">Senses</span> blindsight 30 ft., darkvision 120 ft., passive Perception 16</div><div class="sb-prop"><span class="sb-prop-label">Languages</span> Common, Draconic</div><div class="sb-prop"><span class="sb-prop-label">Challenge</span> 6</div>
+  </div>
+  <hr class="sb-divider"><div class="sb-action"><span class="sb-action-name">Ice Walk.</span> The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, difficult terrain composed of ice or snow doesn't cost it extra movement.</div>
+  <div class="sb-section-title">Actions</div><div class="sb-action"><span class="sb-action-name">Multiattack.</span> The dragon makes three attacks: one with its bite and two with its claws.</div><div class="sb-action"><span class="sb-action-name">Bite.</span> Melee Weapon Attack: +7 to hit, reach 10 ft., one target. Hit: 15 (2d10 + 4) piercing damage plus 4 (d8) cold damage.</div><div class="sb-action"><span class="sb-action-name">Claw.</span> Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) slashing damage.</div><div class="sb-action"><span class="sb-action-name">Cold Breath (Recharge 5-6).</span> The dragon exhales an icy blast in a 30-foot cone. Each creature in that area must make a DC 15 Constitution saving throw, taking 45 (10d8) cold damage on a failed save, or half as much damage on a successful one.</div>
+  
+</div>
+
+    <div class="sb-lore">
+      <p>The smallest, least intelligent, and most animalistic of the chromatic dragons, white dragons dwell in frigid climes, favoring arctic areas or icy mountains. They are vicious, cruel reptiles driven by hunger and greed.</p><p>A white dragon has feral eyes, a sleek profile, and a spined crest. The scales of a wyrmling white dragon glisten pure white. As the dragon ages, its sheen disappears and some of its scales begin to darken, so that by the time it is old, it is mottled by patches of pale blue and light gray. This patterning helps the dragon blend into the realms of ice and stone in which it hunts, and to fade from view when it soars across a cloud-filled sky.</p><h4>Primal and Vengeful</h4><p>White dragons lack the cunning and tactics of most other dragons. However, their bestial nature makes them the best hunters among all dragonkind, singularly focused on surviving and slaughtering their enemies. A white dragon consumes only food that has been frozen, devouring creatures killed by its breath weapon while they are still stiff and frigid. It encases other kills in ice or buries them in snow near its lair, and finding such a larder is a good indication that a white dragon dwells nearby.</p><p>A white dragon also keeps the bodies of its greatest enemies as trophies, freezing corpses where it can look upon them and gloat. The remains of giants, remorhazes, and other dragons are often positioned prominently within a white dragon's lair as warnings to intruders.</p><p>Though only moderately intelligent, white dragons have extraordinary memories. They recall every slight and defeat, and have been known to conduct malicious vendettas against creatures that have offended them. This often includes silver dragons, which lair in the same territories as whites. White dragons can speak as all dragons can, but they rarely talk unless moved to do so.</p><h4>Lone Masters</h4><p>White dragons avoid all other dragons except whites of the opposite sex. Even then, when white dragons seek each other out as mates, they stay together only long enough to conceive offspring before fleeing into isolation again.</p><p>White dragons can't abide rivals near their lairs. As a result, a white dragon attacks other creatures without provocation, viewing such creatures as either too weak or too powerful to live. The only creatures that typically serve a white dragon are intelligent humanoids that demonstrate enough strength to assuage the dragon's wrath, and can put up with sustaining regular losses as a result of its hunger. This includes dragon-worshiping kobolds, which are commonly found in their lairs.</p><p>Powerful creatures can sometimes gain a white dragon's obedience through a demonstration of physical or magical might. Frost giants challenge white dragons to prove their own strength and improve their status in their clans, and their cracked bones litter many a white dragon's lair. However, a white dragon defeated by a frost giant often becomes its servant, accepting the mastery of a superior creature in exchange for asserting its own domination over the other creatures that serve or oppose the giant.</p><h4>Treasure Under Ice</h4><p>White dragons love the cold sparkle of ice and favor treasure with similar qualities, particularly diamonds. However, in their remote arctic climes, the treasure hoards of white dragons more often contain walrus and mammoth tusk ivory, whale-bone sculptures, figureheads from ships, furs, and magic items seized from overly bold adventurers.</p><p>Loose coins and gems are spread across a white dragon's lair, glittering like stars when the light strikes them. Larger treasures and chests are encased in layers of rime created by the white dragon's breath, and held safe beneath layers of transparent ice. The dragon's great strength allows it to easily access its wealth, while lesser creatures must spend hours chipping away or melting the ice to reach the dragon's main hoard.</p><p>A white dragon's flawless memory means that it knows how it came to possess every coin, gem, and magic item in its hoard, and it associates each item with a specific victory. White dragons are notoriously difficult to bribe, since any offers of treasure are seen as an insult to their ability to simply slay the creature making the offer and seize the treasure on their own.</p><h4>A White Dragon's Lair</h4><p>White dragons lair in icy caves and deep subterranean chambers far from the sun. They favor high mountain vales accessible only by flying, caverns in cliff faces, and labyrinthine ice caves in glaciers. White dragons love vertical heights in their caverns, flying up to the ceiling to latch on like bats or slithering down icy crevasses.</p><p>A legendary white dragon's innate magic deepens the cold in the area around its lair. Mountain caverns are fast frozen by the white dragon's presence. A white dragon can often detect intruders by the way the keening wind in its lair changes tone.</p><p>A white dragon rests on high ice shelves and cliffs in its lair, the floor around it a treacherous morass of broken ice and stone, hidden pits, and slippery slopes. As foes struggle to move toward it, the dragon flies from perch to perch and destroys them with its freezing breath.</p><h4>Chromatic Dragons</h4><p>The black, blue, green, red, and white dragons represent the evil side of dragonkind. Aggressive, gluttonous, and vain, chromatic dragons are dark sages and powerful tyrants feared by all creatures-including each other.</p><h4>Driven by Greed</h4><p>Chromatic dragons lust after treasure, and this greed colors their every scheme and plot. They believe that the world's wealth belongs to them by right, and a chromatic dragon seizes that wealth without regard for the humanoids and other creatures that have "stolen" it. With its piles of coins, gleaming gems, and magic items, a dragon's hoard is the stuff of legend. However, chromatic dragons have no interest in commerce, amassing wealth for no other reason than to have it.</p><h4>Creatures of Ego</h4><p>Chromatic dragons are united by their sense of superiority, believing themselves the most powerful and worthy of all mortal creatures. When they interact with other creatures, it is only to further their own interests. They believe in their innate right to rule, and this belief is the cornerstone of every chromatic dragon's personality and worldview. Trying to humble a chromatic dragon is like trying to convince the wind to stop blowing. To these creatures, humanoids are animals, fit to serve as prey or beasts of burden, and wholly unworthy of respect.</p><h4>Dangerous Lairs</h4><p>A dragon's lair serves as the seat of its power and a vault for its treasure. With its innate toughness and tolerance for severe environmental effects, a dragon selects or builds a lair not for shelter but for defense, favoring multiple entrances and exits, and security for its hoard.</p><p>Most chromatic dragon lairs are hidden in dangerous and remote locations to prevent all but the most audacious mortals from reaching them. A black dragon might lair in the heart of a vast swamp, while a red dragon might claim the caldera of an active volcano. In addition to the natural defenses of their lairs, powerful chromatic dragons use magical guardians, traps, and subservient creatures to protect their treasures.</p><h4>Queen of Evil Dragons</h4><p>Tiamat the Dragon Queen is the chief deity of evil dragonkind. She dwells on Avernus, the first layer of the Nine Hells. As a lesser god, Tiamat has the power to grant spells to her worshipers, though she is loath to share her power. She epitomizes the avarice of evil dragons, believing that the multiverse and all its treasures will one day be hers and hers alone.</p><p>Tiamat is a gigantic dragon whose five heads reflect the forms of the chromatic dragons that worship her-black, blue, green, red, and white. She is a terror on the battlefield, capable of annihilating whole armies with her five breath weapons, her formidable spellcasting, and her fearsome claws.</p><p>Tiamat's most hated enemy is Bahamut the Platinum Dragon, with whom she shares control of the faith of dragonkind. She also holds a special enmity for Asmodeus, who long ago stripped her of the rule of Avernus and who continues to curb the Dragon Queen's power.</p><h4>Dragons</h4><p>True dragons are winged reptiles of ancient lineage and fearsome power. They are known and feared for their predatory cunning and greed, with the oldest dragons accounted as some of the most powerful creatures in the world. Dragons are also magical creatures whose innate power fuels their dreaded breath weapons and other preternatural abilities.</p><p>Many creatures, including wyverns and dragon turtles, have draconic blood. However, true dragons fall into the two broad categories of chromatic and metallic dragons. The black, blue, green, red, and white dragons are selfish, evil, and feared by all. The brass, bronze, copper, gold, and silver dragons are noble, good, and highly respected by the wise.</p><p>Though their goals and ideals vary tremendously, all true dragons covet wealth, hoarding mounds of coins and gathering gems, jewels, and magic items. Dragons with large hoards are loath to leave them for long, venturing out of their lairs only to patrol or feed.</p><p>True dragons pass through four distinct stages of life, from lowly wyrmlings to ancient dragons, which can live for over a thousand years. In that time, their might can become unrivaled and their hoards can grow beyond price.</p><p>**Dragon Age Categories**</p><p>| Category | Size | Age Range | |----------|------|-----------| | Wyrmling | Medium | 5 years or less | | Young | Large | 6–100 years | | Adult | Huge | 101–800 years | | Ancient | Gargantuan | 801 years or more | ^dragon-age-categories</p>
+    </div>
+  
+  </div>
+</details>
+
+<details class="misc-entry" id="misc-crok-ruthesk"
+  data-preview-title="Crok Ruthesk"
+  data-preview-body="Local Merchant In - owner of Magical Pop-Up shop">
+  <summary class="misc-summary">
+    <span class="misc-tag misc-tag-npc">NPC</span>
+    Crok Ruthesk
+  </summary>
+  <div class="misc-content">
+    
+<div class="npc-card neutral" style="max-width:none;">
+  <img class="npc-img" src="images/npcs/Image - Crok Ruthesk.png" alt="Crok Ruthesk">
+  <div class="npc-name">Crok Ruthesk</div>
+  <div class="npc-role"><span class="tag tag-neutral">NPC</span> Half-Crocodile - Beastling/Genasi</div>
+  <div class="npc-fields">
+    <div class="npc-field">
+      <span class="npc-field-label">Role / Occupation:</span> Local Merchant In - owner of Magical Pop-Up shop
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Personality:</span> playful, calculating,
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Quirk:</span> always trying to find better outfits
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Goal:</span> trying to start trading with Ice (or another) kingdom - but something is preventing him from doing so
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Secret:</span> investigating secrets of wysteria
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Connection to PCs:</span> Sells them adventuring gear sometimes
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Voice / Mannerism:</span> hisses sometimes, scary teeth
+    </div>
+  
+    <div class="npc-field">
+      <span class="npc-field-label">Hook / Use in Scene:</span> _(Why they matter this moment)_
+    </div>
+  </div>
+</div>
+  </div>
+</details>
+  </div>
+</div>
+<!-- MISC-SECTION-END -->
+
+
+</main>
+
+<a href="#" id="top-btn" title="Back to top">↑</a>
+
+<aside id="notes-panel">
+  <div id="notes-resize-handle"></div>
+  <div class="notes-header">DM Notes</div>
+  <div id="notes-tabs-bar"></div>
+  <div class="notes-section" id="notes-tabs-content">
+    <textarea id="notes-tab-textarea" placeholder="Notes..."></textarea>
+  </div>
+  <div class="notes-section">
+    <div id="notes-combat"></div>
+  </div>
+</aside>
+<div id="sb-popup"></div>
+
+<script src="links.js"></script>
+<script src="creatures.js"></script>
+<script src="../../assets/js/dnd-terms.js"></script>
+<script src="../../assets/js/ui.js"></script>
+</body>
+</html>
