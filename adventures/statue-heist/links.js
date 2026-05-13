@@ -1,4 +1,5 @@
 window.AdventureLinks = {
+  'drifting-crown':     { url: '', credit: '' },
   'magisters-district': { url: '', credit: '' },
   'bakery':             { url: '', credit: '' },
   'village-tailor':     { url: '', credit: '' },
