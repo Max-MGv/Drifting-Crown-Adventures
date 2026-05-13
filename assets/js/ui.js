@@ -834,22 +834,10 @@
       const nameCol = document.createElement('div');
       nameCol.className = 'combat-name-col';
 
-      // Col 5 (end): remove button — built now, appended after AC
+      // Col 5 (end): remove button — listener attached below after player/monster branch
       const removeBtn = document.createElement('button');
       removeBtn.className = 'combat-remove-btn';
       removeBtn.textContent = '×';
-      removeBtn.title = 'Remove from combat';
-      removeBtn.addEventListener('click', () => {
-        c.inCombat = false; c.init = '';
-        if (c.isPlayer) {
-          c.curHp = c.maxHp;
-        } else {
-          c.ac = c.baseAc; c.maxHp = c.baseMaxHp;
-          c.curHp = c.baseMaxHp; c.displayName = '';
-          localStorage.removeItem(c.cKey);
-        }
-        save(); renderCombat();
-      });
 
       if (c.isPlayer) {
         const makeNameInput = () => {
@@ -875,13 +863,8 @@
           nameCol.appendChild(nameText);
         }
 
-        const delBtn = document.createElement('button');
-        delBtn.className = 'combat-remove-btn';
-        delBtn.textContent = '✕';
-        delBtn.title = 'Delete player';
-        delBtn.style.marginLeft = 'auto';
-        delBtn.addEventListener('click', () => { players = players.filter(p => p.id !== c.id); savePlayers(); renderCombat(); });
-        nameCol.appendChild(delBtn);
+        removeBtn.title = 'Delete player';
+        removeBtn.addEventListener('click', () => { players = players.filter(p => p.id !== c.id); savePlayers(); renderCombat(); });
       } else {
         const nameText = document.createElement('span');
         nameText.className = 'combat-name-text';
@@ -909,6 +892,14 @@
           inp.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
         });
         nameCol.appendChild(nameText);
+        removeBtn.title = 'Remove from combat';
+        removeBtn.addEventListener('click', () => {
+          c.inCombat = false; c.init = '';
+          c.ac = c.baseAc; c.maxHp = c.baseMaxHp;
+          c.curHp = c.baseMaxHp; c.displayName = '';
+          localStorage.removeItem(c.cKey);
+          save(); renderCombat();
+        });
       }
 
       row.appendChild(nameCol);
