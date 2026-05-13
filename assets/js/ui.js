@@ -708,10 +708,13 @@
       const inCombat  = all.filter(c =>  c.inCombat).sort((a, b) => (Number(b.init) || 0) - (Number(a.init) || 0));
       const outCombat = combatants.filter(c => !c.inCombat);
 
-      // ── Reset initiative ──
+      // ── Reset + Roll buttons ──
+      const btnRow = document.createElement('div');
+      btnRow.id = 'combat-btn-row';
+
       const resetAllBtn = document.createElement('button');
       resetAllBtn.id = 'combat-reset-all';
-      resetAllBtn.textContent = '↺ Reset Initiative';
+      resetAllBtn.textContent = '↺ Reset';
       resetAllBtn.addEventListener('click', () => {
         [...combatants, ...players].forEach(c => {
           c.inCombat = false; c.init = '';
@@ -726,12 +729,26 @@
         savePlayers();
         renderCombat();
       });
-      combatContainer.appendChild(resetAllBtn);
+
+      const rollAllBtn = document.createElement('button');
+      rollAllBtn.id = 'combat-roll-all';
+      rollAllBtn.textContent = '🎲🎲 Roll Initiative';
+      rollAllBtn.addEventListener('click', () => {
+        [...combatants, ...players].filter(c => c.inCombat).forEach(c => {
+          c.init = Math.floor(Math.random() * 20) + 1;
+          if (c.isPlayer) savePlayers(); else saveCombatant(c);
+        });
+        renderCombat();
+      });
+
+      btnRow.appendChild(resetAllBtn);
+      btnRow.appendChild(rollAllBtn);
+      combatContainer.appendChild(btnRow);
 
       if (inCombat.length) {
         const header = document.createElement('div');
         header.className = 'combat-table-header';
-        ['', '⚄  Name', '♡', '⛨'].forEach((label, i) => {
+        ['🎲🎲', '⚄  Name', '♡', '⛨'].forEach((label, i) => {
           const cell = document.createElement('span');
           cell.textContent = label;
           header.appendChild(cell);

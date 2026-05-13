@@ -554,11 +554,15 @@ body {
 
 .combat-hp-btn:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
 
-#combat-reset-all {
-  width: 100%;
-  background: rgba(120,40,40,0.15);
-  border: 1px dashed #8b3a3a;
-  color: #c07070;
+#combat-btn-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.1rem;
+}
+
+#combat-reset-all,
+#combat-roll-all {
+  flex: 1;
   border-radius: 3px;
   padding: 0.3rem;
   font-size: 0.82rem;
@@ -566,7 +570,19 @@ body {
   transition: background 0.15s, color 0.15s;
 }
 
+#combat-reset-all {
+  background: rgba(120,40,40,0.15);
+  border: 1px dashed #8b3a3a;
+  color: #c07070;
+}
 #combat-reset-all:hover { background: rgba(140,40,40,0.3); color: #e09090; }
+
+#combat-roll-all {
+  background: rgba(48,100,48,0.15);
+  border: 1px dashed #4a8a4a;
+  color: #7db87d;
+}
+#combat-roll-all:hover { background: rgba(48,100,48,0.3); color: #9dd09d; }
 
 .combat-add-player-btn {
   background: transparent;
