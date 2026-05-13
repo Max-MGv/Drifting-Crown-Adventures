@@ -378,6 +378,7 @@ body {
 .combat-table-header {
   display: grid;
   grid-template-columns: 26px 1fr 58px 26px;
+  align-items: center;
   gap: 0.35rem;
   padding: 0.3rem 0.4rem 0.4rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -388,9 +389,31 @@ body {
   font-size: 0.95rem;
   color: rgba(255,255,255,0.85);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.combat-table-header span:nth-child(2) { text-align: left; }
+.combat-table-header span:nth-child(2) {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* Two overlapping dice for initiative column */
+.combat-hdr-init {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.combat-hdr-init .d1,
+.combat-hdr-init .d2 {
+  font-size: 0.82rem;
+  line-height: 1;
+}
+.combat-hdr-init .d2 { margin-left: -0.18em; opacity: 0.7; }
+
+/* Heart should match shield visually */
+.combat-table-header span:nth-child(3) { font-size: 1.1rem; }
 
 /* Shared roster name */
 .combat-name {
