@@ -364,10 +364,10 @@ body {
 
 .combat-row:hover { background: rgba(255,255,255,0.04); }
 
-/* In-combat rows: 4-column grid */
+/* In-combat rows: 5-column grid */
 .combat-row.in-combat {
   display: grid;
-  grid-template-columns: 26px 1fr 58px 26px;
+  grid-template-columns: 26px 1fr 58px 26px 16px;
   align-items: center;
   gap: 0.35rem;
   padding: 0.42rem 0.4rem;
@@ -377,7 +377,7 @@ body {
 /* Column header row */
 .combat-table-header {
   display: grid;
-  grid-template-columns: 26px 1fr 58px 26px;
+  grid-template-columns: 26px 1fr 58px 26px 16px;
   align-items: center;
   gap: 0.35rem;
   padding: 0.3rem 0.4rem 0.4rem;
@@ -413,7 +413,7 @@ body {
 .combat-hdr-init .d2 { margin-left: -0.18em; opacity: 0.7; }
 
 /* Heart should match shield visually */
-.combat-table-header span:nth-child(3) { font-size: 1.1rem; }
+.combat-table-header span:nth-child(3) { font-size: 1.25rem; }
 
 /* Shared roster name */
 .combat-name {

@@ -748,7 +748,7 @@
       if (inCombat.length) {
         const header = document.createElement('div');
         header.className = 'combat-table-header';
-        [null, 'Name', '♡', '⛨'].forEach((label, i) => {
+        [null, 'Name', '♡', '⛨', ''].forEach((label, i) => {
           const cell = document.createElement('span');
           if (i === 0) {
             cell.className = 'combat-hdr-init';
@@ -830,10 +830,11 @@
       initInput.addEventListener('change', () => { c.init = initInput.value; save(); renderCombat(); });
       row.appendChild(initInput);
 
-      // Col 2: name (with tiny remove button inside)
+      // Col 2: name
       const nameCol = document.createElement('div');
       nameCol.className = 'combat-name-col';
 
+      // Col 5 (end): remove button — built now, appended after AC
       const removeBtn = document.createElement('button');
       removeBtn.className = 'combat-remove-btn';
       removeBtn.textContent = '×';
@@ -849,7 +850,6 @@
         }
         save(); renderCombat();
       });
-      nameCol.appendChild(removeBtn);
 
       if (c.isPlayer) {
         const makeNameInput = () => {
@@ -993,6 +993,7 @@
         inp.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
       });
       row.appendChild(acSpan);
+      row.appendChild(removeBtn);
 
       return row;
     }
