@@ -1,9 +1,7 @@
 window.AdventureLinks = {
   "locations-drifting-crown-jpg": {
-    url: "https://www.czepeku.com/fantasy/scenes/sky-islands",
-    credit: "Cze & Peku",
     lowres: true,
-    lowresSrc: "images/locations/drifting-crown-lowres.jpg?v=1778671947902"
+    lowresSrc: "images/locations/drifting-crown-lowres.jpg?v=1778673426488"
   },
   "locations-village-tailor-jpg": {
     url: "https://www.czepeku.com/fantasy/scenes/village-tailor",

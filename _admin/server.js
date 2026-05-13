@@ -122,7 +122,7 @@ app.post('/api/lowres', async (req, res) => {
     fs.mkdirSync(path.dirname(destPath), { recursive: true });
 
     await sharp(srcPath)
-      .jpeg({ quality: 15 })
+      .jpeg({ quality: 5 })
       .toFile(destPath);
 
     res.json({ lowresSrc: `images/${lowresRel}?v=${Date.now()}` });
