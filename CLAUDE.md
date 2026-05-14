@@ -389,15 +389,18 @@ See `FEATURES.md` for the living feature checklist — what's done, in progress,
 | `assets/css/theme.css` | ✅ Done |
 | `assets/css/layout.css` | ✅ Done |
 | `assets/css/components.css` | ✅ Done |
-| `assets/js/ui.js` | ✅ Done — includes statblock renderer and DM notes panel |
+| `assets/js/ui.js` | ✅ Done — statblock renderer, DM notes panel, low-res image swap, Art Credits section |
 | `_templates/oneshot.html` | ✅ Done |
-| `adventures/statue-heist/index.html` | ✅ Done — rebuilt from scratch from updated source MD (2026-05-11) |
+| `adventures/statue-heist/index.html` | ✅ Done — Art Credits section added; Linked Notes section re-injected (2026-05-13) |
+| `adventures/statue-heist/links.js` | ✅ Done — all 11 location images set to low-res (1280px/q10); 9 have purchase URLs |
 | `adventures/statue-heist/creatures.js` | ✅ Auto-generated — 4 creatures (Mage, Minotaur, Owlbear, Young White Dragon) |
 | `adventures/statue-heist-backup/` | ✅ Backup of pre-rebuild version — safe to delete once happy with new version |
 | `_source/statue-heist/` | ✅ Done — source MD files updated in Obsidian and re-synced |
 | `statue-heist.html` | Deleted — legacy flat prototype |
 | `index.html` | ✅ Done — homepage adventure listing |
 | `_build/build.js` | ✅ Done — generates `creatures.js` and injects Linked Notes section |
+| `_admin/server.js` | ✅ Done — local Express admin for low-res image pipeline (port 3001); lowres = 1280px wide, JPEG quality 10 |
+| `_admin/index.html` | ✅ Done — admin UI: adventure selector, image grid, low-res toggle, save + publish |
 
 ### GitHub
 

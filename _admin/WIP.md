@@ -28,7 +28,7 @@ Endpoints:
 - `POST /api/publish` — git add + commit + push
 
 ### Image processing
-`sharp` npm package. Low-res = resize to ~200px wide + quality 40 JPEG. Stored as `[name]-lowres.jpg` alongside the original.
+`sharp` npm package. Low-res = resize to **1280px wide** + **JPEG quality 10**. Stored as `[name]-lowres.jpg` alongside the original.
 
 ### Config format (extends existing `links.js`)
 ```js
@@ -37,24 +37,25 @@ window.AdventureLinks = {
     url: 'https://...',        // purchase/source link
     credit: 'Artist Name',     // badge label
     lowres: true,              // flag: show degraded image
-    lowresSrc: 'images/npcs/gorrath-lowres.jpg'
+    lowresSrc: 'images/locations/gorrath-lowres.jpg'
   },
 };
 ```
 
-### Adventure page (`ui.js` update)
-When an image container loads and its entry has `lowres: true`:
-- Swap `<img src>` to `lowresSrc`
-- Apply CSS blur filter (small, readable but clearly degraded)
-- Source badge becomes "Buy full art ↗" style
+### Adventure page (`ui.js`)
+When an image loads and its entry has `lowres: true`:
+- Swaps `<img src>` to `lowresSrc`
+- Adds `.img-lowres` class and `.container-lowres` to the wrapper
+- Adds "Buy full art ↗" badge if a URL is present; clicking the image opens the purchase URL
+
+Art Credits section (`#art-credits`) is auto-populated by `ui.js` from all `AdventureLinks` entries that have a URL — shows thumbnail, image name, artist credit, and buy link.
 
 ### Admin UI (`_admin/index.html`)
 Served by the Express server. Single page:
 1. Adventure selector (dropdown)
-2. Image grid — each card shows the image, current low-res status, URL field
+2. Image grid — each card shows the image, current low-res status, URL + credit fields
 3. Toggle switch: Full / Low-res per image
-4. Preview button — opens adventure page in iframe with pending changes overlaid
-5. Publish button — saves config + git push
+4. Publish button — saves config + git push
 
 ---
 
@@ -65,13 +66,14 @@ Served by the Express server. Single page:
 | 1 | Server scaffold + image API (`/api/adventures`, `/api/lowres`, `/api/save`) | ✅ Done |
 | 2 | Admin UI — adventure selector + image grid + toggles | ✅ Done |
 | 3 | Preview — iframe showing adventure page with pending config | Skipped — localhost:3001 serves live preview |
-| 4 | `ui.js` update — low-res swap + blur on page load | ✅ Done |
+| 4 | `ui.js` update — low-res swap on page load | ✅ Done |
 | 5 | Publish — `/api/publish` git integration + publish button | ✅ Done |
+| 6 | Art Credits section — auto-populated from `links.js` by `ui.js` | ✅ Done |
 
 ---
 
-## Open questions / decisions
-- Low-res dimensions: 200px wide, JPEG quality 40 (adjust after seeing results)
-- Blur on adventure page: CSS `filter: blur(2px)` + reduced opacity
-- Admin server port: 3001 (avoid conflicts with common dev servers)
+## Decisions
+- Low-res dimensions: **1280px wide, JPEG quality 10** (tested 2026-05-13, settled on this)
+- No CSS blur — quality reduction alone is sufficient at these settings
+- Admin server port: 3001 (avoid conflicts with Live Server on 5500)
 - `links.js` is extended in-place (no separate config file) to keep static page loading simple

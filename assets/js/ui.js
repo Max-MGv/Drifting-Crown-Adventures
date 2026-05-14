@@ -117,6 +117,34 @@
       badge.textContent = info.credit ? `Source: ${info.credit} \u2197` : 'Source \u2197';
       container.appendChild(badge);
     });
+
+    // \u2500\u2500 ART CREDITS SECTION \u2500\u2500
+    const creditsBody = document.querySelector('#art-credits .section-body');
+    if (creditsBody) {
+      const entries = Object.values(window.AdventureLinks).filter(info => info.url);
+      if (entries.length) {
+        const table = document.createElement('table');
+        table.className = 'styled-table';
+        table.innerHTML = '<thead><tr><th>Preview</th><th>Image</th><th>Artist</th><th>Link</th></tr></thead>';
+        const tbody = document.createElement('tbody');
+        entries.forEach(info => {
+          const srcNoQuery = (info.lowresSrc || '').split('?')[0];
+          const filename   = srcNoQuery.split('/').pop().replace(/-lowres\.[^.]+$/, '').replace(/-/g, ' ');
+          const label      = filename.replace(/\b\w/g, c => c.toUpperCase());
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><img src="${info.lowresSrc || ''}" alt="${label}" style="height:48px;width:auto;border-radius:3px;display:block;"></td>
+            <td>${label}</td>
+            <td>${info.credit || '\u2014'}</td>
+            <td><a href="${info.url}" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">View / Buy \u2197</a></td>`;
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        creditsBody.appendChild(table);
+      } else {
+        creditsBody.innerHTML = '<p>No external art sources recorded for this adventure.</p>';
+      }
+    }
   }
 
   // ── IMAGE REVEAL: toggle show/hide for location art ──

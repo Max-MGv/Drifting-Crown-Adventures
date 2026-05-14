@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tanks</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Courier New', monospace;
+      color: #eee;
+      user-select: none;
+    }
+    #hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 800px;
+      padding: 8px 0 6px;
+      font-size: 13px;
+    }
+    .player-info { display: flex; flex-direction: column; gap: 3px; min-width: 200px; }
+    .player-info.right { text-align: right; }
+    .hp-bar { width: 180px; height: 10px; background: #333; border-radius: 3px; overflow: hidden; }
+    .player-info.right .hp-bar { margin-left: auto; }
+    .hp-fill { height: 100%; border-radius: 3px; transition: width 0.2s; }
+    #p1-fill { background: #4caf82; }
+    #p2-fill { background: #e05c5c; }
+    .name { font-weight: bold; font-size: 14px; }
+    #p1-name { color: #4caf82; }
+    #p2-name { color: #e05c5c; }
+    #center-info { text-align: center; font-size: 12px; line-height: 1.6; }
+    #wind-label { color: #aaa; }
+    #wind-val { color: #f0c040; font-weight: bold; }
+    #turn-label { color: #ccc; font-size: 11px; }
+    canvas {
+      border: 2px solid #333;
+      border-radius: 4px;
+      display: block;
+      cursor: crosshair;
+    }
+    #controls {
+      width: 800px;
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      margin-top: 6px;
+    }
+    #message {
+      position: absolute;
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
+      pointer-events: none;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="hud">
+  <div class="player-info" id="p1-info">
+    <span class="name" id="p1-name">PLAYER 1</span>
+    <div class="hp-bar"><div class="hp-fill" id="p1-fill" style="width:100%"></div></div>
+    <span id="p1-stats">Angle: 45°  Power: 50</span>
+  </div>
+  <div id="center-info">
+    <div id="turn-label">Player 1's Turn</div>
+    <div id="wind-label">Wind: <span id="wind-val">→ 0</span></div>
+  </div>
+  <div class="player-info right" id="p2-info">
+    <span class="name" id="p2-name">PLAYER 2</span>
+    <div class="hp-bar"><div class="hp-fill" id="p2-fill" style="width:100%"></div></div>
+    <span id="p2-stats">Angle: 135°  Power: 50</span>
+  </div>
+</div>
+
+<div style="position:relative">
+  <canvas id="c" width="800" height="440"></canvas>
+  <div id="message"></div>
+</div>
+
+<div id="controls">
+  ← → Aim &nbsp;|&nbsp; ↑ ↓ Power &nbsp;|&nbsp; SPACE Fire &nbsp;|&nbsp; R Restart
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+
+// ── state ──────────────────────────────────────────────────────────────────
+
+let terrain, tanks, projectile, explosions, particles;
+let currentPlayer, wind, gameOver, firing;
+
+function init() {
+  terrain     = buildTerrain();
+  wind        = (Math.random() * 6 - 3);
+  gameOver    = false;
+  firing      = false;
+  explosions  = [];
+  particles   = [];
+  currentPlayer = 0;
+
+  const t1x = 80 + Math.random() * 80;
+  const t2x = W - 80 - Math.random() * 80;
+
+  tanks = [
+    { x: t1x, y: terrainY(t1x), angle: 45,  power: 50, hp: 100, color: '#4caf82', name: 'PLAYER 1' },
+    { x: t2x, y: terrainY(t2x), angle: 135, power: 50, hp: 100, color: '#e05c5c', name: 'PLAYER 2' },
+  ];
+
+  projectile = null;
+  updateHUD();
+}
+
+// ── terrain ────────────────────────────────────────────────────────────────
+
+function buildTerrain() {
+  const heights = new Float32Array(W);
+  const base = H * 0.55;
+  // layer multiple sine waves
+  const waves = [
+    { amp: 60, freq: 0.008 + Math.random() * 0.004, phase: Math.random() * Math.PI * 2 },
+    { amp: 30, freq: 0.018 + Math.random() * 0.01,  phase: Math.random() * Math.PI * 2 },
+    { amp: 15, freq: 0.04  + Math.random() * 0.02,  phase: Math.random() * Math.PI * 2 },
+  ];
+  for (let x = 0; x < W; x++) {
+    let h = base;
+    waves.forEach(w => h += Math.sin(x * w.freq + w.phase) * w.amp);
+    heights[x] = Math.max(H * 0.25, Math.min(H * 0.85, h));
+  }
+  // smooth
+  for (let i = 0; i < 3; i++) {
+    for (let x = 1; x < W - 1; x++) {
+      heights[x] = (heights[x - 1] + heights[x] * 2 + heights[x + 1]) / 4;
+    }
+  }
+  return heights;
+}
+
+function terrainY(x) {
+  const xi = Math.max(0, Math.min(W - 1, Math.round(x)));
+  return terrain[xi];
+}
+
+function blastTerrain(cx, cy, r) {
+  for (let x = Math.max(0, cx - r); x < Math.min(W, cx + r); x++) {
+    const dx = x - cx;
+    const dy = Math.sqrt(Math.max(0, r * r - dx * dx));
+    terrain[x] = Math.max(terrain[x], cy + dy);
+  }
+}
+
+// ── drawing ────────────────────────────────────────────────────────────────
+
+const SKY_TOP    = '#0d1b3e';
+const SKY_BTM    = '#1f3d6e';
+const GROUND_TOP = '#4a7c4e';
+const GROUND_BTM = '#2d4a2d';
+const DIRT       = '#3a2c1a';
+
+function drawScene() {
+  // sky gradient
+  const sky = ctx.createLinearGradient(0, 0, 0, H);
+  sky.addColorStop(0, SKY_TOP);
+  sky.addColorStop(1, SKY_BTM);
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, H);
+
+  // stars
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  // deterministic pseudo-stars
+  for (let i = 0; i < 60; i++) {
+    const sx = ((i * 137 + 17) % W);
+    const sy = ((i * 97  + 5)  % (H * 0.45));
+    ctx.fillRect(sx, sy, 1, 1);
+  }
+
+  // terrain fill
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  for (let x = 0; x < W; x++) ctx.lineTo(x, terrain[x]);
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  const gnd = ctx.createLinearGradient(0, H * 0.4, 0, H);
+  gnd.addColorStop(0, GROUND_TOP);
+  gnd.addColorStop(0.15, GROUND_BTM);
+  gnd.addColorStop(1, DIRT);
+  ctx.fillStyle = gnd;
+  ctx.fill();
+
+  // terrain edge line
+  ctx.beginPath();
+  ctx.moveTo(0, terrain[0]);
+  for (let x = 1; x < W; x++) ctx.lineTo(x, terrain[x]);
+  ctx.strokeStyle = '#6aaa6e';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function drawTank(t, idx) {
+  const x = t.x, y = t.y;
+  ctx.save();
+  ctx.translate(x, y);
+
+  // body
+  ctx.fillStyle = t.color;
+  ctx.fillRect(-18, -12, 36, 12);
+
+  // tread
+  ctx.fillStyle = '#222';
+  ctx.fillRect(-20, -4, 40, 6);
+  // tread bolts
+  ctx.fillStyle = '#444';
+  for (let i = -16; i <= 16; i += 8) {
+    ctx.fillRect(i - 1, -3, 2, 4);
+  }
+
+  // turret base
+  ctx.fillStyle = t.color;
+  ctx.beginPath();
+  ctx.arc(0, -12, 10, 0, Math.PI * 2);
+  ctx.fill();
+
+  // barrel
+  const rad = (t.angle * Math.PI) / 180;
+  ctx.save();
+  ctx.rotate(-rad + Math.PI);
+  ctx.fillStyle = idx === 0 ? '#3a8f62' : '#b03a3a';
+  ctx.fillRect(-3, -24, 6, 22);
+  ctx.restore();
+
+  // player label
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 9px Courier New';
+  ctx.textAlign = 'center';
+  ctx.fillText(`P${idx + 1}`, 0, -26);
+
+  ctx.restore();
+}
+
+function drawProjectile(p) {
+  ctx.save();
+  ctx.fillStyle = '#f0c040';
+  ctx.shadowColor = '#f0c040';
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawExplosions() {
+  explosions.forEach(e => {
+    const pct = 1 - e.life / e.maxLife;
+    const r   = e.radius * pct;
+    const alpha = 1 - pct;
+    const grd = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, r);
+    grd.addColorStop(0,   `rgba(255,240,100,${alpha})`);
+    grd.addColorStop(0.4, `rgba(255,120,30,${alpha * 0.8})`);
+    grd.addColorStop(1,   `rgba(80,20,0,0)`);
+    ctx.beginPath();
+    ctx.arc(e.x, e.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+  });
+}
+
+function drawParticles() {
+  particles.forEach(p => {
+    ctx.globalAlpha = p.life / p.maxLife;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x - 2, p.y - 2, 4, 4);
+  });
+  ctx.globalAlpha = 1;
+}
+
+function drawAimLine(t) {
+  const rad = (t.angle * Math.PI) / 180;
+  const dx = Math.cos(Math.PI - rad);
+  const dy = -Math.sin(Math.PI - rad);
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+  ctx.setLineDash([4, 6]);
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(t.x, t.y - 12);
+  ctx.lineTo(t.x + dx * 60, t.y - 12 + dy * 60);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawWindArrow() {
+  const cx = W / 2, cy = 20;
+  const len = Math.abs(wind) * 12;
+  const dir = wind >= 0 ? 1 : -1;
+  ctx.save();
+  ctx.strokeStyle = '#f0c040';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(cx - dir * len / 2, cy);
+  ctx.lineTo(cx + dir * len / 2, cy);
+  ctx.stroke();
+  // arrowhead
+  ctx.fillStyle = '#f0c040';
+  ctx.beginPath();
+  ctx.moveTo(cx + dir * len / 2, cy);
+  ctx.lineTo(cx + dir * (len / 2 - 8), cy - 5);
+  ctx.lineTo(cx + dir * (len / 2 - 8), cy + 5);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+// ── physics ────────────────────────────────────────────────────────────────
+
+const GRAVITY = 0.12;
+
+function fire() {
+  if (firing || gameOver) return;
+  firing = true;
+  const t   = tanks[currentPlayer];
+  const rad = (t.angle * Math.PI) / 180;
+  const spd = t.power * 0.18;
+  projectile = {
+    x:  t.x + Math.cos(Math.PI - rad) * 24,
+    y:  t.y - 12 + (-Math.sin(Math.PI - rad)) * 24,
+    vx: Math.cos(Math.PI - rad) * spd,
+    vy: -Math.sin(Math.PI - rad) * spd,
+  };
+}
+
+function spawnExplosion(x, y, r) {
+  explosions.push({ x, y, radius: r, life: 0, maxLife: 28 });
+  for (let i = 0; i < 18; i++) {
+    const a  = Math.random() * Math.PI * 2;
+    const sp = 1 + Math.random() * 3;
+    particles.push({
+      x, y,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp - 2,
+      life: 20 + Math.random() * 20,
+      maxLife: 40,
+      color: ['#f0c040','#ff8020','#ff4020','#fff'][Math.floor(Math.random() * 4)],
+    });
+  }
+}
+
+function stepProjectile() {
+  if (!projectile) return;
+  projectile.vx += wind * 0.004;
+  projectile.vy += GRAVITY;
+  projectile.x  += projectile.vx;
+  projectile.y  += projectile.vy;
+
+  // off screen
+  if (projectile.x < 0 || projectile.x > W || projectile.y > H) {
+    projectile = null;
+    endTurn();
+    return;
+  }
+
+  // terrain hit
+  if (projectile.y >= terrainY(projectile.x)) {
+    const ex = projectile.x, ey = projectile.y;
+    spawnExplosion(ex, ey, 30);
+    blastTerrain(ex, ey, 30);
+    projectile = null;
+
+    // check tank hits
+    let hit = false;
+    tanks.forEach((t, i) => {
+      const dx = t.x - ex, dy = (t.y - 6) - ey;
+      if (Math.sqrt(dx * dx + dy * dy) < 34) {
+        const dmg = 20 + Math.floor(Math.random() * 30);
+        t.hp = Math.max(0, t.hp - dmg);
+        spawnExplosion(t.x, t.y - 6, 22);
+        hit = true;
+        if (t.hp <= 0) {
+          setTimeout(() => showWinner(currentPlayer), 400);
+          gameOver = true;
+        }
+      }
+    });
+
+    // re-seat tanks on updated terrain
+    tanks.forEach(t => { t.y = terrainY(t.x); });
+
+    setTimeout(() => {
+      if (!gameOver) endTurn();
+    }, 350);
+    return;
+  }
+
+  // direct tank hit (before terrain)
+  tanks.forEach((t, i) => {
+    if (i === currentPlayer || !projectile) return;
+    const dx = t.x - projectile.x, dy = (t.y - 6) - projectile.y;
+    if (Math.sqrt(dx * dx + dy * dy) < 18) {
+      spawnExplosion(t.x, t.y - 6, 36);
+      blastTerrain(t.x, t.y, 36);
+      const dmg = 30 + Math.floor(Math.random() * 40);
+      t.hp = Math.max(0, t.hp - dmg);
+      projectile = null;
+      tanks.forEach(tk => { tk.y = terrainY(tk.x); });
+      if (t.hp <= 0) {
+        setTimeout(() => showWinner(currentPlayer), 400);
+        gameOver = true;
+      } else {
+        setTimeout(() => { if (!gameOver) endTurn(); }, 350);
+      }
+    }
+  });
+}
+
+function endTurn() {
+  currentPlayer = 1 - currentPlayer;
+  wind = (Math.random() * 6 - 3);
+  firing = false;
+  updateHUD();
+}
+
+// ── HUD ────────────────────────────────────────────────────────────────────
+
+function updateHUD() {
+  const t1 = tanks[0], t2 = tanks[1];
+  document.getElementById('p1-fill').style.width  = t1.hp + '%';
+  document.getElementById('p2-fill').style.width  = t2.hp + '%';
+  document.getElementById('p1-stats').textContent = `Angle: ${t1.angle}°  Power: ${t1.power}`;
+  document.getElementById('p2-stats').textContent = `Angle: ${t2.angle}°  Power: ${t2.power}`;
+  document.getElementById('turn-label').textContent = `${tanks[currentPlayer].name}'s Turn`;
+  const wDir = wind >= 0 ? '→' : '←';
+  document.getElementById('wind-val').textContent  = `${wDir} ${Math.abs(wind).toFixed(1)}`;
+}
+
+function showWinner(winnerIdx) {
+  const msg = document.getElementById('message');
+  msg.textContent = `${tanks[winnerIdx].name} WINS! (R to restart)`;
+  msg.style.color = tanks[winnerIdx].color;
+  msg.style.display = 'block';
+}
+
+// ── input ──────────────────────────────────────────────────────────────────
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'r' || e.key === 'R') {
+    document.getElementById('message').style.display = 'none';
+    init();
+    return;
+  }
+  if (gameOver || firing) return;
+  const t = tanks[currentPlayer];
+  if (e.key === 'ArrowLeft')  { t.angle = Math.max(1,   t.angle - 2); updateHUD(); }
+  if (e.key === 'ArrowRight') { t.angle = Math.min(179, t.angle + 2); updateHUD(); }
+  if (e.key === 'ArrowUp')    { t.power = Math.min(100, t.power + 2); updateHUD(); }
+  if (e.key === 'ArrowDown')  { t.power = Math.max(5,   t.power - 2); updateHUD(); }
+  if (e.key === ' ') { e.preventDefault(); fire(); }
+});
+
+// ── loop ───────────────────────────────────────────────────────────────────
+
+function tick() {
+  stepProjectile();
+
+  explosions.forEach(e => e.life++);
+  explosions = explosions.filter(e => e.life < e.maxLife);
+
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += 0.15; p.life--;
+  });
+  particles = particles.filter(p => p.life > 0);
+
+  // draw
+  drawScene();
+  if (!gameOver && !firing) drawAimLine(tanks[currentPlayer]);
+  drawWindArrow();
+  drawParticles();
+  drawExplosions();
+  tanks.forEach((t, i) => drawTank(t, i));
+  if (projectile) drawProjectile(projectile);
+
+  // active player highlight ring
+  if (!gameOver) {
+    const t = tanks[currentPlayer];
+    ctx.save();
+    ctx.strokeStyle = t.color;
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([3, 4]);
+    ctx.beginPath();
+    ctx.arc(t.x, t.y - 6, 24, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  updateHUD();
+  requestAnimationFrame(tick);
+}
+
+init();
+tick();
+</script>
+</body>
+</html>
