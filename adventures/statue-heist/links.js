@@ -1,5 +1,7 @@
 window.AdventureLinks = {
   "locations-drifting-crown-jpg": {
+    url: "https://www.czepeku.com/fantasy/scenes/sky-islands",
+    credit: "Cze & Peku",
     lowres: true,
     lowresSrc: "images/locations/drifting-crown-lowres.jpg?v=1778701000000"
   },
@@ -19,7 +21,7 @@ window.AdventureLinks = {
     url: "https://www.czepeku.com/fantasy/maps/temple-of-the-medusa-throne/original",
     credit: "Cze & Peku",
     lowres: true,
-    lowresSrc: "images/locations/boss-room-battlemap-lowres.jpg?v=1778701000000"
+    lowresSrc: "images/locations/boss-room-battlemap-lowres.jpg?v=1748822400000"
   },
   "locations-magic-popup-jpg": {
     url: "https://www.czepeku.com/fantasy/scenes/magic-popup-shop",
@@ -58,6 +60,8 @@ window.AdventureLinks = {
     lowresSrc: "images/locations/museum-study-lowres.jpg?v=1778701000000"
   },
   "locations-magisters-district-jpg": {
+    url: "https://www.czepeku.com/fantasy/scenes/magisters-market",
+    credit: "Cze & Peku",
     lowres: true,
     lowresSrc: "images/locations/magisters-district-lowres.jpg?v=1778701000000"
   }
