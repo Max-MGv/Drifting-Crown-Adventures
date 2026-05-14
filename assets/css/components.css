@@ -193,7 +193,7 @@ hr.divider {
 .stat-pill.dc     { background: var(--blue); }
 .stat-pill.check  { background: var(--green); }
 .stat-pill.damage { background: var(--red); }
-.stat-pill.time   { background: var(--gold); color: var(--ink); }
+.stat-pill.time   { background: var(--gold); color: #fff; }
 
 
 /* ── NPC CARDS ── */
