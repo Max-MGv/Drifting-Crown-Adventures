@@ -95,6 +95,33 @@ body {
   padding-left: 1.9rem;
 }
 
+#sidebar-footer {
+  padding: 1rem 1.2rem 1.4rem;
+  border-top: 1px solid rgba(160, 120, 48, 0.25);
+  margin-top: auto;
+}
+
+.sidebar-pdf-btn {
+  display: block;
+  text-align: center;
+  padding: 0.45rem 0.8rem;
+  background: rgba(160, 120, 48, 0.12);
+  border: 1px solid rgba(160, 120, 48, 0.4);
+  border-radius: 4px;
+  color: #c9a84c;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.sidebar-pdf-btn:hover {
+  background: rgba(160, 120, 48, 0.22);
+  border-color: rgba(160, 120, 48, 0.7);
+  color: #e8d9b8;
+}
+
 /* ── MAIN CONTENT COLUMN ── */
 #main {
   margin-left: 230px;

@@ -50,6 +50,9 @@
     .btn-save:hover    { background: #1e5a32; }
     .btn-publish { background: #8b1a1a; color: #f4c4c4; }
     .btn-publish:hover { background: #a02020; }
+    .btn-pdf     { background: #1a3a5c; color: #a8c8f0; }
+    .btn-pdf:hover     { background: #1e4a72; }
+    .btn-pdf:disabled  { opacity: 0.4; cursor: default; }
     .btn-save:disabled, .btn-publish:disabled { opacity: 0.4; cursor: default; }
 
     #status {
@@ -202,6 +205,7 @@
   <div class="header-actions">
     <button class="btn-save"    id="btn-save"    disabled>Save</button>
     <button class="btn-publish" id="btn-publish" disabled>Publish to GitHub</button>
+    <button class="btn-pdf"     id="btn-pdf"     disabled>Export PDF</button>
   </div>
 </header>
 
@@ -240,6 +244,7 @@
 
   document.getElementById('adv-select').addEventListener('change', e => {
     current = e.target.value;
+    document.getElementById('btn-pdf').disabled = !current;
     if (!current) { clearGrid(); return; }
 
     const adv = adventures.find(a => a.name === current);
@@ -445,6 +450,33 @@
       setStatus('Published to GitHub.');
     } catch (e) {
       setStatus(`Publish failed: ${e.message}`);
+    }
+  });
+
+  // ── pdf export ────────────────────────────────────────────────────────────
+
+  document.getElementById('btn-pdf').addEventListener('click', async () => {
+    if (!current) return;
+    const btn = document.getElementById('btn-pdf');
+    btn.disabled = true;
+    btn.textContent = 'Generating…';
+    setStatus('Generating PDF — this takes about 10 seconds…');
+    try {
+      const res = await fetch(`${API}/api/pdf/${current}`);
+      if (!res.ok) { const d = await res.json(); throw new Error(d.error); }
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `${current}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+      setStatus('PDF downloaded.');
+    } catch (e) {
+      setStatus(`PDF failed: ${e.message}`);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Export PDF';
     }
   });
 

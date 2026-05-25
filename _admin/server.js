@@ -4,6 +4,7 @@ const sharp   = require('sharp');
 const path    = require('path');
 const fs      = require('fs');
 const { execSync } = require('child_process');
+const { generateAdventurePDF } = require('./lib/pdf');
 
 const app     = express();
 const PORT    = 3001;
@@ -52,7 +53,8 @@ function getImages(adventureName) {
     }
   }
 
-  walk(base, '');
+  const locationsDir = path.join(base, 'locations');
+  if (fs.existsSync(locationsDir)) walk(locationsDir, 'locations');
   return results;
 }
 
@@ -145,10 +147,24 @@ app.post('/api/save', (req, res) => {
   }
 });
 
-// Publish: git add + commit (if anything changed) + push
-app.post('/api/publish', (req, res) => {
+// Publish: regenerate all PDFs, then git add + commit + push
+app.post('/api/publish', async (req, res) => {
   try {
     const { message = 'Admin: update image config' } = req.body;
+
+    // Regenerate adventure.pdf for every adventure before committing
+    const adventures = getAdventureNames();
+    for (const adventure of adventures) {
+      try {
+        console.log(`Generating PDF for ${adventure}...`);
+        const { pdfBuffer } = await generateAdventurePDF(PORT, adventure);
+        fs.writeFileSync(path.join(ADV_DIR, adventure, 'adventure.pdf'), pdfBuffer);
+        console.log(`  ✓ ${adventure}/adventure.pdf`);
+      } catch (pdfErr) {
+        console.warn(`  ✗ PDF failed for ${adventure}:`, pdfErr.message);
+      }
+    }
+
     execSync('git add -A', { cwd: REPO });
     const status = execSync('git status --porcelain', { cwd: REPO }).toString().trim();
     if (status) {
@@ -158,6 +174,27 @@ app.post('/api/publish', (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message, stderr: err.stderr?.toString() });
+  }
+});
+
+// Generate and download a PDF for one adventure; also saves adventure.pdf to the adventure folder
+app.get('/api/pdf/:adventure', async (req, res) => {
+  try {
+    const { adventure } = req.params;
+    const { pdfBuffer, title } = await generateAdventurePDF(PORT, adventure);
+
+    // Save to adventures/[name]/adventure.pdf for static hosting
+    const savePath = path.join(ADV_DIR, adventure, 'adventure.pdf');
+    fs.writeFileSync(savePath, pdfBuffer);
+    console.log(`Saved PDF → ${savePath}`);
+
+    const filename = `${title.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.pdf`;
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(pdfBuffer);
+  } catch (err) {
+    console.error('PDF error:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 

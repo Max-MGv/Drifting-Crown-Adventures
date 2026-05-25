@@ -303,6 +303,33 @@ window.AdventureLinks = {
 
 ---
 
+### Analytics (GoatCounter)
+
+Traffic is tracked via GoatCounter on all pages.
+
+- **Dashboard:** `driftingcrown.goatcounter.com` — log in to view visits, referrers, browsers, countries
+- **Script:** Added just before `</body>` in `index.html`, all adventure `index.html` files, and `_templates/oneshot.html` (so new adventures inherit it automatically)
+- **API:** GoatCounter API v0 at `https://driftingcrown.goatcounter.com/api/v0/` — API token is stored in the daily monitoring routine (not in this file)
+- **Daily monitoring routine:** Runs at 10pm Tbilisi (6pm UTC) every day — results visible at `https://claude.ai/code/routines` (routine ID: `trig_012TgRsMQ63bJmqn4uzwJG72`)
+
+**Checking visits on demand:** Ask Claude "any visits?" — it will call the API directly:
+```bash
+curl -s -H "Authorization: Bearer <token>" https://driftingcrown.goatcounter.com/api/v0/stats/hits
+```
+The response includes per-page daily counts. `count` on each hit object is the all-time total; sum `daily` fields across `stats[]` for a date range.
+
+**Excluding your own visits (desktop + phone):**
+- **IP blocking:** GoatCounter dashboard → your username → Settings → Ignore IPs → add your home IP (find it at whatismyip.com). Does not cover mobile data.
+- **localStorage (recommended for phone):** Open the browser console on your site and run once per device/browser:
+  ```js
+  localStorage.setItem('goatcounter_ignore', 't')
+  ```
+  GoatCounter's script checks this flag and skips counting that device regardless of IP or network.
+
+When adding a new adventure, the GoatCounter script is already in the template so no extra step is needed.
+
+---
+
 ### Creature / Statblock System
 
 Statblocks are **data-driven**, not hand-coded HTML. The pipeline:
@@ -401,6 +428,7 @@ See `FEATURES.md` for the living feature checklist — what's done, in progress,
 | `_build/build.js` | ✅ Done — generates `creatures.js` and injects Linked Notes section |
 | `_admin/server.js` | ✅ Done — local Express admin for low-res image pipeline (port 3001); lowres = 1280px wide, JPEG quality 10 |
 | `_admin/index.html` | ✅ Done — admin UI: adventure selector, image grid, low-res toggle, save + publish |
+| GoatCounter analytics | ✅ Done — script on all pages; daily monitoring routine at 10pm Tbilisi (claude.ai/code/routines) |
 
 ### GitHub
 
