@@ -108,18 +108,10 @@ const PRINT_CSS = `
     padding: 0;
   }
   #pdf-cover .cover-banner {
-    flex: 0 0 50%;
+    flex: 0 0 45%;
     overflow: hidden;
-  }
-  #pdf-cover .cover-banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  #pdf-cover .cover-no-banner {
-    flex: 0 0 10%;
-    background: #1a0f05;
+    background-size: cover;
+    background-position: center;
   }
   #pdf-cover .cover-content {
     flex: 1;
@@ -127,10 +119,15 @@ const PRINT_CSS = `
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 3rem;
+    padding: 2.5rem 3rem;
     background: #1a0f05;
     border-top: 3px solid #a07830;
     text-align: center;
+  }
+  #pdf-cover.no-banner .cover-content {
+    border-top: none;
+    justify-content: center;
+    padding: 4rem 3rem;
   }
   #pdf-cover .cover-rule {
     width: 60%;
@@ -193,8 +190,7 @@ const PRINT_CSS = `
     color: rgba(232, 217, 184, 0.45);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: auto;
-    padding-top: 1.2rem;
+    margin-top: 1rem;
   }
 
   /* ── TOC page ── */
@@ -236,12 +232,11 @@ const PRINT_CSS = `
 async function generateAdventurePDF(port, adventureName) {
   const adventureUrl = `http://localhost:${port}/adventures/${adventureName}/index.html`;
 
-  // Load banner from disk as base64 so it's guaranteed to render in Puppeteer
+  // Check for optional banner image
   let bannerSrc = '';
   for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
-    const p = path.join(ADV_DIR, adventureName, 'images', `banner.${ext}`);
-    if (fs.existsSync(p)) {
-      bannerSrc = `data:image/${ext === 'jpg' ? 'jpeg' : ext};base64,${fs.readFileSync(p).toString('base64')}`;
+    if (fs.existsSync(path.join(ADV_DIR, adventureName, 'images', `banner.${ext}`))) {
+      bannerSrc = `http://localhost:${port}/adventures/${adventureName}/images/banner.${ext}`;
       break;
     }
   }
@@ -366,10 +361,14 @@ async function generateAdventurePDF(port, adventureName) {
 
       const cover = document.createElement('div');
       cover.id = 'pdf-cover';
+      if (!bannerSrc) cover.classList.add('no-banner');
+      if (bannerSrc) {
+        const s = document.createElement('style');
+        s.textContent = `#pdf-cover .cover-banner { background: url("${bannerSrc}") center / cover no-repeat !important; }`;
+        document.head.appendChild(s);
+      }
       cover.innerHTML = `
-        <div class="${bannerSrc ? 'cover-banner' : 'cover-no-banner'}">
-          ${bannerSrc ? `<img src="${bannerSrc}" alt="">` : ''}
-        </div>
+        ${bannerSrc ? '<div class="cover-banner"></div>' : ''}
         <div class="cover-content">
           <h1>${meta.title}</h1>
           <hr class="cover-rule">
@@ -396,8 +395,8 @@ async function generateAdventurePDF(port, adventureName) {
       cover.insertAdjacentElement('afterend', toc);
     }, { meta, sectionPages, bannerSrc, desc, credits });
 
-    // Let images load (banner + any revealed location images)
-    await new Promise(r => setTimeout(r, 2000));
+    // Let background image and any content images finish loading
+    await new Promise(r => setTimeout(r, 1500));
 
     const pdfBuffer = await page.pdf({
       format: 'A4',
