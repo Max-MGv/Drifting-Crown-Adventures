@@ -94,107 +94,7 @@ const PRINT_CSS = `
   /* ── Suppress header/footer on cover page ── */
   @page :first { margin-top: 0 !important; margin-bottom: 0 !important; }
 
-  /* ── Cover page ── */
-  #pdf-cover {
-    width: 100%;
-    height: 100vh;
-    page-break-after: always;
-    break-after: page;
-    background: #1a0f05 !important;
-    display: flex !important;
-    flex-direction: column;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  #pdf-cover .cover-banner {
-    flex: 0 0 45%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-  }
-  #pdf-cover .cover-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5rem 3rem 3.5rem;
-    background: #1a0f05;
-    border-top: 3px solid #a07830;
-    text-align: center;
-  }
-  #pdf-cover.no-banner .cover-content {
-    border-top: none;
-    padding: 5rem 3rem 3.5rem;
-  }
-  #pdf-cover .cover-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #pdf-cover .cover-bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #pdf-cover .cover-rule {
-    width: 60%;
-    border: none;
-    border-top: 1px solid #a07830;
-    margin: 0.75rem 0;
-    opacity: 0.6;
-  }
-  #pdf-cover h1 {
-    font-family: Georgia, serif;
-    font-size: 2.6rem;
-    color: #f4ead5;
-    letter-spacing: 0.06em;
-    margin: 0 0 0.4rem;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
-  #pdf-cover .cover-tagline {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: #c9a84c;
-    margin: 0 0 1.2rem;
-    max-width: 80%;
-    line-height: 1.5;
-  }
-  #pdf-cover .cover-meta {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  #pdf-cover .cover-meta span {
-    font-family: 'Courier New', monospace;
-    font-size: 0.75rem;
-    color: #e8d9b8;
-    background: rgba(160, 120, 48, 0.15);
-    border: 1px solid rgba(160, 120, 48, 0.5);
-    padding: 0.2rem 0.7rem;
-    border-radius: 3px;
-  }
-  #pdf-cover .cover-desc {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 0.88rem;
-    color: #c9a84c;
-    line-height: 1.65;
-    max-width: 82%;
-    text-align: center;
-    margin: 0 0 0.8rem;
-  }
-  #pdf-cover .cover-credits {
-    font-family: 'Courier New', monospace;
-    font-size: 0.62rem;
-    color: rgba(232, 217, 184, 0.45);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin: 0;
-  }
+  /* cover page: all styled inline — nothing here */
 
   /* ── TOC page ── */
   #pdf-toc {
@@ -362,29 +262,35 @@ async function generateAdventurePDF(port, adventureName) {
       const main = document.getElementById('main');
       if (!main) return;
 
-      const cover = document.createElement('div');
-      cover.id = 'pdf-cover';
-      if (!bannerSrc) cover.classList.add('no-banner');
-      if (bannerSrc) {
-        const s = document.createElement('style');
-        s.textContent = `#pdf-cover .cover-banner { background: url("${bannerSrc}") center / cover no-repeat !important; }`;
-        document.head.appendChild(s);
-      }
-      cover.innerHTML = `
-        ${bannerSrc ? '<div class="cover-banner"></div>' : ''}
-        <div class="cover-content">
-          <div class="cover-top">
-            <h1>${meta.title}</h1>
-            <hr class="cover-rule">
-            ${meta.tagline ? `<p class="cover-tagline">${meta.tagline}</p>` : ''}
-            ${meta.pills.length ? `<div class="cover-meta">${meta.pills.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
-          </div>
-          <div class="cover-bottom">
-            ${desc ? `<p class="cover-desc">${desc}</p>` : ''}
-            ${credits.length ? `<p class="cover-credits">${credits.join(' &nbsp;·&nbsp; ')}</p>` : ''}
-          </div>
-        </div>`;
-      main.prepend(cover);
+      const coverDiv = document.createElement('div');
+      coverDiv.id = 'pdf-cover';
+      coverDiv.setAttribute('style', [
+        'page-break-after: always',
+        'break-after: page',
+        '-webkit-print-color-adjust: exact',
+        'print-color-adjust: exact',
+        'background-color: #1a0f05',
+        'padding: 5rem 3.5rem 4rem',
+        'box-sizing: border-box',
+        'text-align: center',
+        'font-family: Georgia, serif',
+      ].join('; '));
+
+      const pillsHtml = meta.pills.length
+        ? meta.pills.map(p =>
+            `<span style="display:inline-block;font-family:'Courier New',monospace;font-size:0.72rem;color:#e8d9b8;border:1px solid rgba(160,120,48,0.5);padding:0.2rem 0.65rem;border-radius:3px;margin:0 0.3rem;">${p}</span>`
+          ).join('')
+        : '';
+
+      coverDiv.innerHTML = `
+        <h1 style="font-size:2.6rem;color:#f4ead5;letter-spacing:0.06em;margin:0 0 0.5rem;font-weight:normal;">${meta.title}</h1>
+        <hr style="width:55%;border:none;border-top:1px solid #a07830;margin:0 auto 0.75rem;opacity:0.6;">
+        ${meta.tagline ? `<p style="font-style:italic;font-size:1rem;color:#c9a84c;margin:0 0 1.4rem;line-height:1.5;">${meta.tagline}</p>` : ''}
+        ${pillsHtml ? `<div style="margin-bottom:2.5rem;">${pillsHtml}</div>` : ''}
+        ${desc ? `<hr style="width:35%;border:none;border-top:1px solid rgba(160,120,48,0.3);margin:0 auto 1.2rem;"><p style="font-style:italic;font-size:0.88rem;color:#c9a84c;line-height:1.65;max-width:75%;margin:0 auto 1rem;">${desc}</p>` : ''}
+        ${credits.length ? `<p style="font-family:'Courier New',monospace;font-size:0.6rem;color:rgba(232,217,184,0.4);letter-spacing:0.12em;text-transform:uppercase;margin:0;">${credits.join(' &nbsp;&middot;&nbsp; ')}</p>` : ''}
+      `;
+      main.prepend(coverDiv);
 
       const toc = document.createElement('div');
       toc.id = 'pdf-toc';
@@ -399,7 +305,7 @@ async function generateAdventurePDF(port, adventureName) {
               <span class="toc-page">${s.page}</span>
             </li>`).join('')}
         </ul>`;
-      cover.insertAdjacentElement('afterend', toc);
+      coverDiv.insertAdjacentElement('afterend', toc);
     }, { meta, sectionPages, bannerSrc, desc, credits });
 
     // Let background image and any content images finish loading
