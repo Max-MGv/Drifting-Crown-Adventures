@@ -5,6 +5,30 @@ const fs        = require('fs');
 const REPO    = path.resolve(__dirname, '../..');
 const ADV_DIR = path.join(REPO, 'adventures');
 
+function parseHomepage(adventureName) {
+  const html = fs.readFileSync(path.join(REPO, 'index.html'), 'utf8');
+
+  // Adventure blurb from the card on the homepage
+  const descRe = new RegExp(
+    `href="adventures/${adventureName}/[^"]*"[\\s\\S]*?adventure-card-desc">\\s*([\\s\\S]*?)\\s*<\\/div>`
+  );
+  const descMatch = html.match(descRe);
+  const desc = descMatch ? descMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+
+  // Credit names from the Thanks & Credits section
+  const creditsSection = html.match(/Thanks[^<]*Credits[\s\S]*?section-body">([\s\S]*?)<\/div>\s*<\/div>/);
+  const credits = [];
+  if (creditsSection) {
+    const h3Re = /<h3>([^<]+)<\/h3>/g;
+    let m;
+    while ((m = h3Re.exec(creditsSection[1])) !== null) {
+      credits.push(m[1].replace(/&amp;/g, '&'));
+    }
+  }
+
+  return { desc, credits };
+}
+
 // A4 at 96 DPI = 1122px tall. With 16mm top + 16mm bottom margins (~121px total),
 // usable content height per page is ~1001px. We use a conservative estimate for TOC
 // page-number calculation (off-by-one is acceptable; breaks push content down anyway).
@@ -84,7 +108,7 @@ const PRINT_CSS = `
     padding: 0;
   }
   #pdf-cover .cover-banner {
-    flex: 0 0 58%;
+    flex: 0 0 50%;
     overflow: hidden;
   }
   #pdf-cover .cover-banner img {
@@ -146,6 +170,31 @@ const PRINT_CSS = `
     border: 1px solid rgba(160, 120, 48, 0.5);
     padding: 0.2rem 0.7rem;
     border-radius: 3px;
+  }
+  #pdf-cover .cover-divider {
+    width: 40%;
+    border: none;
+    border-top: 1px solid rgba(160, 120, 48, 0.3);
+    margin: 1rem 0 0.8rem;
+  }
+  #pdf-cover .cover-desc {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: #c9a84c;
+    line-height: 1.65;
+    max-width: 82%;
+    text-align: center;
+    margin: 0;
+  }
+  #pdf-cover .cover-credits {
+    font-family: 'Courier New', monospace;
+    font-size: 0.62rem;
+    color: rgba(232, 217, 184, 0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: auto;
+    padding-top: 1.2rem;
   }
 
   /* ── TOC page ── */
@@ -307,8 +356,11 @@ async function generateAdventurePDF(port, adventureName) {
       page: Math.floor(s.top / CONTENT_HEIGHT_PX) + 3,
     }));
 
+    // Pull blurb + credits from the homepage
+    const { desc, credits } = parseHomepage(adventureName);
+
     // Inject cover page + TOC into the DOM
-    await page.evaluate(({ meta, sectionPages, bannerSrc }) => {
+    await page.evaluate(({ meta, sectionPages, bannerSrc, desc, credits }) => {
       const main = document.getElementById('main');
       if (!main) return;
 
@@ -323,6 +375,8 @@ async function generateAdventurePDF(port, adventureName) {
           <hr class="cover-rule">
           ${meta.tagline ? `<p class="cover-tagline">${meta.tagline}</p>` : ''}
           ${meta.pills.length ? `<div class="cover-meta">${meta.pills.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
+          ${desc ? `<hr class="cover-divider"><p class="cover-desc">${desc}</p>` : ''}
+          ${credits.length ? `<p class="cover-credits">${credits.join(' &nbsp;·&nbsp; ')}</p>` : ''}
         </div>`;
       main.prepend(cover);
 
@@ -340,7 +394,7 @@ async function generateAdventurePDF(port, adventureName) {
             </li>`).join('')}
         </ul>`;
       cover.insertAdjacentElement('afterend', toc);
-    }, { meta, sectionPages, bannerSrc });
+    }, { meta, sectionPages, bannerSrc, desc, credits });
 
     // Let images load (banner + any revealed location images)
     await new Promise(r => setTimeout(r, 2000));
