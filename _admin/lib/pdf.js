@@ -117,17 +117,26 @@ const PRINT_CSS = `
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 2.5rem 3rem;
+    padding: 5rem 3rem 3.5rem;
     background: #1a0f05;
     border-top: 3px solid #a07830;
     text-align: center;
   }
   #pdf-cover.no-banner .cover-content {
     border-top: none;
-    justify-content: center;
-    padding: 4rem 3rem;
+    padding: 5rem 3rem 3.5rem;
+  }
+  #pdf-cover .cover-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #pdf-cover .cover-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   #pdf-cover .cover-rule {
     width: 60%;
@@ -168,12 +177,6 @@ const PRINT_CSS = `
     padding: 0.2rem 0.7rem;
     border-radius: 3px;
   }
-  #pdf-cover .cover-divider {
-    width: 40%;
-    border: none;
-    border-top: 1px solid rgba(160, 120, 48, 0.3);
-    margin: 1rem 0 0.8rem;
-  }
   #pdf-cover .cover-desc {
     font-family: Georgia, serif;
     font-style: italic;
@@ -182,7 +185,7 @@ const PRINT_CSS = `
     line-height: 1.65;
     max-width: 82%;
     text-align: center;
-    margin: 0;
+    margin: 0 0 0.8rem;
   }
   #pdf-cover .cover-credits {
     font-family: 'Courier New', monospace;
@@ -190,7 +193,7 @@ const PRINT_CSS = `
     color: rgba(232, 217, 184, 0.45);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: 1rem;
+    margin: 0;
   }
 
   /* ── TOC page ── */
@@ -370,12 +373,16 @@ async function generateAdventurePDF(port, adventureName) {
       cover.innerHTML = `
         ${bannerSrc ? '<div class="cover-banner"></div>' : ''}
         <div class="cover-content">
-          <h1>${meta.title}</h1>
-          <hr class="cover-rule">
-          ${meta.tagline ? `<p class="cover-tagline">${meta.tagline}</p>` : ''}
-          ${meta.pills.length ? `<div class="cover-meta">${meta.pills.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
-          ${desc ? `<hr class="cover-divider"><p class="cover-desc">${desc}</p>` : ''}
-          ${credits.length ? `<p class="cover-credits">${credits.join(' &nbsp;·&nbsp; ')}</p>` : ''}
+          <div class="cover-top">
+            <h1>${meta.title}</h1>
+            <hr class="cover-rule">
+            ${meta.tagline ? `<p class="cover-tagline">${meta.tagline}</p>` : ''}
+            ${meta.pills.length ? `<div class="cover-meta">${meta.pills.map(p => `<span>${p}</span>`).join('')}</div>` : ''}
+          </div>
+          <div class="cover-bottom">
+            ${desc ? `<p class="cover-desc">${desc}</p>` : ''}
+            ${credits.length ? `<p class="cover-credits">${credits.join(' &nbsp;·&nbsp; ')}</p>` : ''}
+          </div>
         </div>`;
       main.prepend(cover);
 
