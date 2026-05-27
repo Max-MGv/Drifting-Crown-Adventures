@@ -20,7 +20,7 @@ body {
   color: var(--sidebar-text);
   overflow-y: auto;
   z-index: 100;
-  padding: 0 0 2rem 0;
+  padding: 0;
   border-right: 3px solid var(--gold);
   box-shadow: 4px 0 18px rgba(0, 0, 0, 0.6);
 }
